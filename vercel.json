@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "api/contact.ts": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    { "source": "/blog/:path*", "destination": "/blog/:path*" },
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/((?!api|blog|sitemap|robots).*)", "destination": "/index.html" }
+  ]
+}

@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ofertă Artclick [NUME CLIENT]</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --teal: #0dd9c5;
+        --navy: #070d1a;
+        --navy2: #0c1528;
+        --text: #eef4ff;
+        --dim: #7b8eb5;
+        --line: rgba(255, 255, 255, 0.08);
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f0f4f8;
+        color: #1a1a2e;
+        line-height: 1.6;
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background: white;
+        }
+        .no-print {
+          display: none !important;
+        }
+        .page {
+          box-shadow: none !important;
+          margin: 0 !important;
+          border-radius: 0 !important;
+        }
+        .page-break {
+          page-break-before: always;
+        }
+      }
+
+      /* Edit UI */
+      .edit-bar {
+        background: #1a1a2e;
+        color: white;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .edit-bar span {
+        font-size: 13px;
+        opacity: 0.7;
+      }
+      .edit-bar .actions {
+        display: flex;
+        gap: 10px;
+      }
+      .btn-print {
+        background: #0dd9c5;
+        color: #070d1a;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 100px;
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .btn-reset {
+        background: transparent;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 8px 16px;
+        border-radius: 100px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      [contenteditable] {
+        outline: none;
+        cursor: text;
+      }
+      [contenteditable]:hover {
+        background: rgba(13, 217, 197, 0.06);
+        border-radius: 4px;
+      }
+      [contenteditable]:focus {
+        background: rgba(13, 217, 197, 0.1);
+        border-radius: 4px;
+        box-shadow: 0 0 0 2px rgba(13, 217, 197, 0.3);
+      }
+
+      /* Page */
+      .page {
+        max-width: 794px;
+        margin: 32px auto;
+        background: var(--navy);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+        color: var(--text);
+      }
+
+      /* Header */
+      .oferta-header {
+        padding: 40px 48px 36px;
+        background: linear-gradient(135deg, #0c1528 0%, #070d1a 100%);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .logo {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .logo .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--teal);
+        box-shadow: 0 0 12px rgba(13, 217, 197, 0.6);
+      }
+      .oferta-meta {
+        text-align: right;
+      }
+      .oferta-meta .label {
+        font-family: monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--teal);
+        margin-bottom: 6px;
+      }
+      .oferta-meta .nr {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--text);
+      }
+      .oferta-meta .date {
+        font-size: 12px;
+        color: var(--dim);
+        margin-top: 4px;
+      }
+
+      /* Parties */
+      .parties {
+        padding: 32px 48px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        border-bottom: 1px solid var(--line);
+      }
+      .party-label {
+        font-family: monospace;
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--teal);
+        margin-bottom: 12px;
+      }
+      .party-name {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .party-detail {
+        font-size: 13px;
+        color: var(--dim);
+        line-height: 1.7;
+      }
+
+      /* Subject */
+      .subject-section {
+        padding: 28px 48px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(13, 217, 197, 0.04);
+      }
+      .subject-label {
+        font-family: monospace;
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--teal);
+        margin-bottom: 8px;
+      }
+      .subject-text {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      /* Scope */
+      .section {
+        padding: 32px 48px;
+        border-bottom: 1px solid var(--line);
+      }
+      .section-title {
+        font-family: monospace;
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--teal);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .section-title::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(13, 217, 197, 0.2);
+      }
+
+      /* Deliverables */
+      .deliverable {
+        display: flex;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+        align-items: flex-start;
+      }
+      .deliverable:last-child {
+        border-bottom: none;
+      }
+      .del-check {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(13, 217, 197, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .del-check svg {
+        color: var(--teal);
+      }
+      .del-name {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .del-detail {
+        font-size: 12.5px;
+        color: var(--dim);
+        margin-top: 3px;
+        line-height: 1.5;
+      }
+
+      /* Not included */
+      .not-included {
+        background: rgba(249, 115, 22, 0.05);
+        border: 1px solid rgba(249, 115, 22, 0.15);
+        border-radius: 10px;
+        padding: 16px 20px;
+      }
+      .not-included p {
+        font-size: 13px;
+        color: #fda27a;
+      }
+      .not-included ul {
+        font-size: 13px;
+        color: var(--dim);
+        margin: 8px 0 0 16px;
+      }
+      .not-included li {
+        margin-bottom: 4px;
+      }
+
+      /* Price table */
+      .price-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .price-table td {
+        padding: 13px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 14px;
+      }
+      .price-table td:last-child {
+        text-align: right;
+        color: var(--text);
+        font-weight: 600;
+      }
+      .price-table tr:last-child td {
+        border-bottom: none;
+      }
+      .price-table .total-row td {
+        padding-top: 18px;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+      }
+      .price-table .total-row td:last-child {
+        color: var(--teal);
+      }
+      .price-table td.item-name {
+        color: var(--text);
+      }
+      .price-table td.item-detail {
+        color: var(--dim);
+        font-size: 12px;
+      }
+
+      /* Timeline */
+      .timeline {
+        display: flex;
+        gap: 0;
+      }
+      .timeline-step {
+        flex: 1;
+        padding: 16px;
+        border-right: 1px solid var(--line);
+      }
+      .timeline-step:last-child {
+        border-right: none;
+      }
+      .step-num {
+        font-family: monospace;
+        font-size: 10px;
+        color: var(--teal);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 6px;
+      }
+      .step-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .step-duration {
+        font-size: 11.5px;
+        color: var(--dim);
+      }
+
+      /* Guarantees */
+      .guarantees {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1px;
+        background: var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .guarantee {
+        background: var(--navy2);
+        padding: 16px;
+      }
+      .guarantee .g-num {
+        font-family: monospace;
+        font-size: 10px;
+        color: var(--teal);
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .guarantee .g-text {
+        font-size: 12.5px;
+        color: var(--text);
+        font-weight: 500;
+        line-height: 1.4;
+      }
+
+      /* Payment */
+      .payment-terms {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .payment-item {
+        background: var(--navy2);
+        border-radius: 10px;
+        padding: 16px;
+      }
+      .payment-label {
+        font-family: monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--teal);
+        margin-bottom: 6px;
+      }
+      .payment-value {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .payment-detail {
+        font-size: 12px;
+        color: var(--dim);
+      }
+
+      /* Signature */
+      .signature-section {
+        padding: 32px 48px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+      .sig-party {
+      }
+      .sig-label {
+        font-family: monospace;
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--teal);
+        margin-bottom: 16px;
+      }
+      .sig-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .sig-detail {
+        font-size: 12px;
+        color: var(--dim);
+        margin-bottom: 32px;
+      }
+      .sig-line {
+        border-bottom: 1px solid rgba(13, 217, 197, 0.3);
+        padding-bottom: 4px;
+        margin-bottom: 6px;
+        min-height: 40px;
+      }
+      .sig-line-label {
+        font-size: 11px;
+        color: var(--dim);
+      }
+
+      /* Footer */
+      .oferta-footer {
+        padding: 20px 48px;
+        background: rgba(255, 255, 255, 0.02);
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .oferta-footer span {
+        font-family: monospace;
+        font-size: 11px;
+        color: var(--dim);
+      }
+
+      /* Validity banner */
+      .validity {
+        background: rgba(13, 217, 197, 0.08);
+        border: 1px solid rgba(13, 217, 197, 0.2);
+        border-radius: 10px;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 0;
+      }
+      .validity .v-icon {
+        color: var(--teal);
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      .validity p {
+        font-size: 13px;
+        color: var(--text);
+      }
+      .validity strong {
+        color: var(--teal);
+      }
+
+      @media (max-width: 640px) {
+        .oferta-header,
+        .parties,
+        .section,
+        .signature-section {
+          padding: 24px;
+        }
+        .parties {
+          grid-template-columns: 1fr;
+        }
+        .guarantees {
+          grid-template-columns: 1fr;
+        }
+        .payment-terms {
+          grid-template-columns: 1fr;
+        }
+        .signature-section {
+          grid-template-columns: 1fr;
+        }
+        .timeline {
+          flex-direction: column;
+        }
+        .timeline-step {
+          border-right: none;
+          border-bottom: 1px solid var(--line);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Edit bar -->
+    <div class="edit-bar no-print">
+      <div>
+        <div style="font-weight: 700; font-size: 14px; margin-bottom: 2px">
+          📄 Template Ofertă Artclick
+        </div>
+        <span
+          >Click pe orice text verde pentru a-l edita · Apoi Print / Save as
+          PDF</span
+        >
+      </div>
+      <div class="actions">
+        <button class="btn-reset" onclick="location.reload()">↺ Reset</button>
+        <button class="btn-print" onclick="window.print()">
+          🖨 Print / PDF
+        </button>
+      </div>
+    </div>
+
+    <div class="page">
+      <!-- Header -->
+      <div class="oferta-header">
+        <div class="logo"><span class="dot"></span>artclick</div>
+        <div class="oferta-meta">
+          <div class="label">Ofertă nr.</div>
+          <div class="nr" contenteditable="true">#AC-001</div>
+          <div class="date" contenteditable="true">
+            Data: 13 Iulie 2026 · Valabilă 14 zile
+          </div>
+        </div>
+      </div>
+
+      <!-- Parties -->
+      <div class="parties">
+        <div>
+          <div class="party-label">De la</div>
+          <div class="party-name">Artclick Studio</div>
+          <div class="party-detail" contenteditable="true">
+            artclickon@outlook.com<br />
+            artclick.ro<br />
+            România
+          </div>
+        </div>
+        <div>
+          <div class="party-label">Către</div>
+          <div class="party-name" contenteditable="true">
+            Numele Clientului / Firma SRL
+          </div>
+          <div class="party-detail" contenteditable="true">
+            email@client.ro<br />
+            Domeniu de activitate<br />
+            Oraș, România
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject -->
+      <div class="subject-section">
+        <div class="subject-label">Obiect ofertă</div>
+        <div class="subject-text" contenteditable="true">
+          Creare site de prezentare pentru [Firma Client SRL]
+        </div>
+      </div>
+
+      <!-- Deliverables -->
+      <div class="section">
+        <div class="section-title">Ce includem în acest proiect</div>
+
+        <div class="deliverable">
+          <div class="del-check">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M1.5 6L4.5 9L10.5 2"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="del-name" contenteditable="true">
+              Design custom (nu template generic)
+            </div>
+            <div class="del-detail" contenteditable="true">
+              Design adaptat brandului tău: culori, fonturi, stil vizual
+              personalizat
+            </div>
+          </div>
+        </div>
+
+        <div class="deliverable">
+          <div class="del-check">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M1.5 6L4.5 9L10.5 2"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="del-name" contenteditable="true">
+              Site responsive (mobil + tabletă + desktop)
+            </div>
+            <div class="del-detail" contenteditable="true">
+              Funcționează perfect pe orice dispozitiv
+            </div>
+          </div>
+        </div>
+
+        <div class="deliverable">
+          <div class="del-check">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M1.5 6L4.5 9L10.5 2"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="del-name" contenteditable="true">
+              SEO de bază inclus fără cost suplimentar
+            </div>
+            <div class="del-detail" contenteditable="true">
+              Titluri, meta descrieri, viteza de încărcare, sitemap, Google
+              Search Console configurat
+            </div>
+          </div>
+        </div>
+
+        <div class="deliverable">
+          <div class="del-check">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M1.5 6L4.5 9L10.5 2"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="del-name" contenteditable="true">
+              Formular de contact cu notificări email
+            </div>
+            <div class="del-detail" contenteditable="true">
+              Primești email imediat când cineva completează formularul
+            </div>
+          </div>
+        </div>
+
+        <div class="deliverable">
+          <div class="del-check">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M1.5 6L4.5 9L10.5 2"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="del-name" contenteditable="true">
+              Google Analytics + Search Console configurate
+            </div>
+            <div class="del-detail" contenteditable="true">
+              Știi câți vizitatori ai, de unde vin și ce pagini vizitează
+            </div>
+          </div>
+        </div>
+
+        <div class="deliverable">
+          <div class="del-check">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M1.5 6L4.5 9L10.5 2"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="del-name" contenteditable="true">
+              30 de zile suport post-lansare inclus
+            </div>
+            <div class="del-detail" contenteditable="true">
+              Fix-uri gratuite pentru orice problemă apărută în prima lună
+            </div>
+          </div>
+        </div>
+
+        <div class="deliverable">
+          <div class="del-check">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M1.5 6L4.5 9L10.5 2"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="del-name" contenteditable="true">
+              Codul sursă + toate accesele le tale 100%
+            </div>
+            <div class="del-detail" contenteditable="true">
+              Primești: acces hosting, domeniu, panou admin, codul sursă complet
+            </div>
+          </div>
+        </div>
+
+        <!-- Not included -->
+        <div class="not-included" style="margin-top: 20px">
+          <p><strong>❌ Nu este inclus în această ofertă:</strong></p>
+          <ul contenteditable="true">
+            <li>
+              Hosting și domeniu (recomandat Hostinger ~40€/an te ajut să
+              configurezi)
+            </li>
+            <li>Fotografii profesionale sau materiale video</li>
+            <li>
+              Textele paginilor (le furnizezi tu sau adăugăm copywriting +500
+              lei)
+            </li>
+            <li>Traducere în alte limbi (se poate adăuga la cerere)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="section">
+        <div class="section-title">Investiție</div>
+        <table class="price-table">
+          <tr>
+            <td class="item-name" contenteditable="true">
+              Site de prezentare custom
+            </td>
+            <td contenteditable="true">1.299 lei</td>
+          </tr>
+          <tr>
+            <td class="item-name" contenteditable="true">SEO de bază inclus</td>
+            <td style="color: #0dd9c5">GRATUIT</td>
+          </tr>
+          <tr>
+            <td class="item-name" contenteditable="true">
+              30 zile suport inclus
+            </td>
+            <td style="color: #0dd9c5">GRATUIT</td>
+          </tr>
+          <tr>
+            <td class="item-name" contenteditable="true">
+              Discount client nou
+            </td>
+            <td style="color: #fda27a" contenteditable="true">-200 lei</td>
+          </tr>
+          <tr class="total-row">
+            <td><strong>TOTAL DE PLATĂ</strong></td>
+            <td contenteditable="true">1.099 lei</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Payment -->
+      <div class="section">
+        <div class="section-title">Termeni de plată</div>
+        <div class="payment-terms">
+          <div class="payment-item">
+            <div class="payment-label">Avans la semnare</div>
+            <div class="payment-value" contenteditable="true">50%</div>
+            <div class="payment-detail" contenteditable="true">
+              Plătit înainte de a începe lucrul
+            </div>
+          </div>
+          <div class="payment-item">
+            <div class="payment-label">Rest la livrare</div>
+            <div class="payment-value" contenteditable="true">50%</div>
+            <div class="payment-detail" contenteditable="true">
+              Plătit la predarea site-ului live
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="section">
+        <div class="section-title">Calendar livrare</div>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="step-num">Ziua 1</div>
+            <div class="step-name">Brief & Design</div>
+            <div class="step-duration" contenteditable="true">
+              Primești prima variantă de design
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-num">Ziua 2-3</div>
+            <div class="step-name">Development</div>
+            <div class="step-duration" contenteditable="true">
+              Construim site-ul, încarci conținut
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-num">Ziua 4</div>
+            <div class="step-name">Review & Ajustări</div>
+            <div class="step-duration" contenteditable="true">
+              Feedback și modificări finale
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-num" contenteditable="true">Ziua 5</div>
+            <div class="step-name">Lansare Live</div>
+            <div class="step-duration" contenteditable="true">
+              Site publicat pe domeniul tău
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guarantees -->
+      <div class="section">
+        <div class="section-title">Garanțiile noastre</div>
+        <div class="guarantees">
+          <div class="guarantee">
+            <div class="g-num">G01 · Termen</div>
+            <div class="g-text">
+              Livrăm în termenul agreat sau prelungim cu aceeași perioadă
+              gratuit.
+            </div>
+          </div>
+          <div class="guarantee">
+            <div class="g-num">G02 · Preț</div>
+            <div class="g-text">
+              Prețul din ofertă = prețul final. Zero costuri ascunse sau
+              surprize.
+            </div>
+          </div>
+          <div class="guarantee">
+            <div class="g-num">G03 · Calitate</div>
+            <div class="g-text">
+              Cod original, zero template-uri reciclate. Unic prin definiție.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Validity -->
+      <div class="section" style="border-bottom: none">
+        <div class="validity">
+          <span class="v-icon">⏰</span>
+          <p>
+            Această ofertă este valabilă
+            <strong contenteditable="true">14 zile</strong> de la data emiterii.
+            După această perioadă, prețul poate fi recalculat în funcție de
+            disponibilitate.
+          </p>
+        </div>
+      </div>
+
+      <!-- Signature -->
+      <div class="signature-section" style="border-top: 1px solid var(--line)">
+        <div class="sig-party">
+          <div class="sig-label">Furnizor</div>
+          <div class="sig-name">Artclick Studio</div>
+          <div class="sig-detail">artclickon@outlook.com · artclick.ro</div>
+          <div class="sig-line"></div>
+          <div class="sig-line-label">Semnătură și dată</div>
+        </div>
+        <div class="sig-party">
+          <div class="sig-label">Client</div>
+          <div class="sig-name" contenteditable="true">Numele Clientului</div>
+          <div class="sig-detail" contenteditable="true">
+            Firma SRL · email@client.ro
+          </div>
+          <div class="sig-line"></div>
+          <div class="sig-line-label">Semnătură și dată acceptare</div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="oferta-footer">
+        <span>Artclick · artclickon@outlook.com · artclick.ro</span>
+        <span contenteditable="true">Ofertă #AC-001 · Iulie 2026</span>
+      </div>
+    </div>
+
+    <div
+      style="text-align: center; padding: 24px; color: #666; font-size: 13px"
+      class="no-print"
+    >
+      💡 Cum folosești acest template: editează textele verzi → dă Print → Save
+      as PDF → trimite pe email clientului
+    </div>
+  </body>
+</html>
