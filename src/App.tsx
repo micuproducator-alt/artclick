@@ -1,30 +1,30 @@
-import { useEffect } from 'react'
-import { LangProvider } from './context/LangContext'
-import { ModalProvider, useModal } from './context/ModalContext'
-import Cursor from './components/ui/Cursor'
-import Grain from './components/ui/Grain'
-import FloatingCTA from './components/ui/FloatingCTA'
-import Header from './components/layout/Header'
-import Footer from './components/layout/Footer'
-import Hero from './components/sections/Hero'
-import SectionTabs from './components/sections/SectionTabs'
-import Blog from './components/sections/Blog'
-import CTA from './components/sections/CTA'
-import ContactModal from './components/modals/ContactModal'
-import QuoteModal from './components/modals/QuoteModal'
-import ServicesModal from './components/modals/ServicesModal'
-import ProcessModal from './components/modals/ProcessModal'
-import ProjectsCarousel from './components/modals/ProjectsCarousel'
+import { useEffect } from "react";
+import { LangProvider } from "./context/LangContext";
+import { ModalProvider, useModal } from "./context/ModalContext";
+import Cursor from "./components/ui/Cursor";
+import Grain from "./components/ui/Grain";
+import FloatingCTA from "./components/ui/FloatingCTA";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import Hero from "./components/sections/Hero";
+import SectionTabs from "./components/sections/SectionTabs";
+import Blog from "./components/sections/Blog";
+import CTA from "./components/sections/CTA";
+import ContactModal from "./components/modals/ContactModal";
+import QuoteModal from "./components/modals/QuoteModal";
+import ServicesModal from "./components/modals/ServicesModal";
+import ProcessModal from "./components/modals/ProcessModal";
+import ProjectsCarousel from "./components/modals/ProjectsCarousel";
 
 function HashHandler() {
-  const { openModal } = useModal()
+  const { openModal } = useModal();
   useEffect(() => {
-    if (window.location.hash === '#contact') {
-      setTimeout(() => openModal('quote'), 700)
-      window.history.replaceState(null, '', '/')
+    if (window.location.hash === "#contact") {
+      setTimeout(() => openModal("quote"), 700);
+      window.history.replaceState(null, "", "/");
     }
-  }, [openModal])
-  return null
+  }, [openModal]);
+  return null;
 }
 
 export default function App() {
@@ -54,5 +54,5 @@ export default function App() {
         </div>
       </ModalProvider>
     </LangProvider>
-  )
+  );
 }
