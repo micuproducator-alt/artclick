@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
-const BREVO = 'https://api.brevo.com/v3/smtp/email'
+const RESEND_API = 'https://api.resend.com/emails'
 
 function row(label: string, value: string) {
   if (!value || value === '—') return ''
@@ -55,7 +55,7 @@ function ownerEmail(d: Record<string, string>) {
         ${row('Mesaj', d.message || '—')}
       </table>
       <div style="margin-top:32px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:12px;flex-wrap:wrap">
-        <a href="mailto:${d.email}?subject=Re: ${encodeURIComponent(d.type || 'Cererea ta')}&body=Bună ${encodeURIComponent((d.name||'').split(' ')[0])}%2C%0A%0AMultumesc pentru mesajul trimis prin artclick.ro."
+        <a href="mailto:${d.email}?subject=Re: ${encodeURIComponent(d.type || 'Cererea ta')}"
           style="display:inline-block;padding:13px 28px;background:#0DD9C5;color:#070D1A;
             font-size:14px;font-weight:700;border-radius:100px;text-decoration:none">
           ✉ Răspunde acum
@@ -121,58 +121,55 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const d: Record<string, string> = req.body ?? {}
   if (!d.name || !d.email) return res.status(400).json({ error: 'Missing fields' })
 
-  const KEY   = process.env.BREVO_API_KEY
+  const KEY   = process.env.RESEND_API_KEY
   const OWNER = process.env.OWNER_EMAIL  || 'contact@artclick.ro'
-  const FROM  = process.env.SENDER_EMAIL || 'contact@artclick.ro'
+  const FROM  = process.env.SENDER_EMAIL || 'onboarding@resend.dev'
 
   if (!KEY) {
-    console.error('BREVO_API_KEY not set in Vercel env variables')
-    return res.status(500).json({ error: 'BREVO_API_KEY not configured' })
+    console.error('RESEND_API_KEY not set in Vercel env variables')
+    return res.status(500).json({ error: 'RESEND_API_KEY not configured' })
   }
 
   const headers = {
-    'api-key': KEY,
+    'Authorization': `Bearer ${KEY}`,
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
   }
 
   try {
-    // ① Notificare owner (tu)
-    const r1 = await fetch(BREVO, {
+    const r1 = await fetch(RESEND_API, {
       method: 'POST', headers,
       body: JSON.stringify({
-        sender:  { name: `${d.name} via Artclick`, email: FROM },
-        to:      [{ email: OWNER, name: 'Artclick' }],
-        replyTo: { email: d.email, name: d.name },
+        from: `${d.name} via Artclick <${FROM}>`,
+        to: [OWNER],
+        reply_to: d.email,
         subject: `🔔 ${d.type || 'Cerere nouă'} — ${d.name}`,
-        htmlContent: ownerEmail(d),
+        html: ownerEmail(d),
       }),
     })
     if (!r1.ok) {
       const errText = await r1.text()
-      console.error('Brevo owner email failed:', errText)
+      console.error('Resend owner email failed:', errText)
       throw new Error(errText)
     }
 
-    // ② Confirmare client
-    const r2 = await fetch(BREVO, {
+    const r2 = await fetch(RESEND_API, {
       method: 'POST', headers,
       body: JSON.stringify({
-        sender:      { name: 'Artclick', email: FROM },
-        to:          [{ email: d.email, name: d.name }],
-        subject:     `Am primit mesajul tău! Revin în 24h ✓`,
-        htmlContent: clientEmail(d),
+        from: `Artclick <${FROM}>`,
+        to: [d.email],
+        subject: `Am primit mesajul tău! Revin în 24h ✓`,
+        html: clientEmail(d),
       }),
     })
     if (!r2.ok) {
       const errText = await r2.text()
-      console.error('Brevo client email failed:', errText)
+      console.error('Resend client email failed:', errText)
       throw new Error(errText)
     }
 
     return res.status(200).json({ success: true })
   } catch (err) {
-    console.error('Brevo error:', err)
+    console.error('Resend error:', err)
     return res.status(500).json({ error: 'Email send failed' })
   }
 }
