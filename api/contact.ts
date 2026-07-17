@@ -147,24 +147,31 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }),
     })
     if (!r1.ok) {
+      // Emailul catre TINE (owner) e critic - daca acesta esueaza, raportam eroare reala
       const errText = await r1.text()
       console.error('Resend owner email failed:', errText)
-      throw new Error(errText)
+      return res.status(500).json({ error: 'Owner email failed' })
     }
 
-    const r2 = await fetch(RESEND_API, {
-      method: 'POST', headers,
-      body: JSON.stringify({
-        from: `Artclick <${FROM}>`,
-        to: [d.email],
-        subject: `Am primit mesajul tău! Revin în 24h ✓`,
-        html: clientEmail(d),
-      }),
-    })
-    if (!r2.ok) {
-      const errText = await r2.text()
-      console.error('Resend client email failed:', errText)
-      throw new Error(errText)
+    // Emailul de confirmare catre CLIENT e "nice to have" - daca esueaza
+    // (ex: domeniul de test Resend nu poate trimite catre orice adresa),
+    // NU blocam succesul formularului. Userul tot vede "Trimis!".
+    try {
+      const r2 = await fetch(RESEND_API, {
+        method: 'POST', headers,
+        body: JSON.stringify({
+          from: `Artclick <${FROM}>`,
+          to: [d.email],
+          subject: `Am primit mesajul tău! Revin în 24h ✓`,
+          html: clientEmail(d),
+        }),
+      })
+      if (!r2.ok) {
+        const errText = await r2.text()
+        console.warn('Resend client confirmation email failed (non-blocking):', errText)
+      }
+    } catch (clientEmailErr) {
+      console.warn('Resend client confirmation email error (non-blocking):', clientEmailErr)
     }
 
     return res.status(200).json({ success: true })
