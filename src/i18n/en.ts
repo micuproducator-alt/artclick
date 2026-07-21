@@ -22,7 +22,7 @@ const en: I18nData = {
     "✗ Not for those seeking the cheapest option",
   ],
   proof_items: [
-    { num: "5-10", unit: "days", label: "hours until your first site is live" },
+    { num: "96", unit: "h", label: "hours until your first site is live" },
     { num: "0", unit: "", label: "recycled templates used. ever." },
     { num: "4+", unit: "", label: "projects delivered, 100% original code" },
     { num: "24", unit: "h", label: "hours until a detailed proposal" },
