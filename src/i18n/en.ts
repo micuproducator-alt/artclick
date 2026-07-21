@@ -22,7 +22,11 @@ const en: I18nData = {
     "✓ Quality-driven projects",
   ],
   proof_items: [
-    { num: "5-10", unit: "days", label: "average delivery time for a website" },
+    {
+      num: "5 - 10",
+      unit: "days",
+      label: "average delivery time for a website",
+    },
     {
       num: "100%",
       unit: "",
