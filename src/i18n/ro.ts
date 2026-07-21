@@ -22,7 +22,7 @@ const ro: I18nData = {
     "✗ Nu pentru cei care caută cel mai ieftin",
   ],
   proof_items: [
-    { num: "96", unit: "h", label: "ore până la primul tău site live" },
+    { num: "5-10", unit: "zile", label: "ore până la primul tău site live" },
     { num: "0", unit: "", label: "template-uri reciclate folosite vreodată" },
     { num: "4+", unit: "", label: "proiecte livrate, cod 100% propriu" },
     { num: "24", unit: "h", label: "ore până la o propunere detaliată" },
