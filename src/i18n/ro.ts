@@ -23,8 +23,8 @@ const ro: I18nData = {
   ],
   proof_items: [
     {
-      num: "5 - 10",
-      unit: "zile",
+      num: "5 - 10 zile",
+      unit: "",
       label: "termen mediu de livrare pentru un site",
     },
     { num: "100%", unit: "", label: "design și cod adaptate proiectului tău" },
