@@ -6,28 +6,29 @@ const articles = {
   ro: [
     {
       tag: "ghid · iulie 2026",
-      title: "Cât costă un site în România 2026? Prețuri reale și ghid complet",
+      title: "Cât costă un site web în România? Prețuri reale și ghid de buget",
       excerpt:
-        'Prețuri de la 300 lei la 50.000 lei pentru „același" site de ce există această diferență și ce preț este corect pentru afacerea ta.',
-      readTime: "8 min",
+        "De la 1.500 lei la peste 30.000 lei: ce influențează costul de dezvoltare, ce capcane să eviți și cum să stabilești bugetul corect.",
+      readTime: "7 min",
       href: "/blog/cat-costa-un-site-in-romania-2026.html",
       label: "Citește articolul",
     },
     {
-      tag: "comparatie · iulie 2026",
-      title: "WordPress sau site custom ce alegem în 2026?",
+      tag: "comparație · iulie 2026",
+      title:
+        "WordPress sau dezvoltare Custom: Ce soluție se potrivește afacerii tale?",
       excerpt:
-        "Comparație completă: costuri, viteză, SEO, securitate și când să alegi fiecare variantă pentru afacerea ta.",
-      readTime: "7 min",
+        "O analiză obiectivă a costurilor de mentenanță, vitezei de încărcare, securității și flexibilității pe termen lung.",
+      readTime: "6 min",
       href: "/blog/wordpress-sau-site-custom-2026.html",
       label: "Citește articolul",
     },
     {
-      tag: "SEO · iulie 2026",
-      title: "SEO pentru IMM-uri: cum apari pe prima pagină Google",
+      tag: "SEO & Optimizare · iulie 2026",
+      title: "Ghid SEO pentru IMM-uri: Bazele vizibilității organice pe Google",
       excerpt:
-        "Ghid practic cu pași concreți pentru afaceri mici din România cuvinte cheie, Google Business Profile, optimizare on-page și tool-uri gratuite.",
-      readTime: "10 min",
+        "Pași practici pentru optimizarea on-page, structura datelor, Google Business Profile și aspecte tehnice esențiale.",
+      readTime: "8 min",
       href: "/blog/seo-pentru-imm-uri-romania.html",
       label: "Citește articolul",
     },
@@ -35,28 +36,31 @@ const articles = {
   en: [
     {
       tag: "guide · july 2026",
-      title: "How much does a website cost in Romania 2026?",
+      title:
+        "How much does a website cost in Romania? Real prices & budgeting guide",
       excerpt:
-        'Prices from 300 to 50,000 lei for the "same" website why this difference exists and what price is right for your business.',
-      readTime: "8 min",
+        "From 1,500 RON to over 30,000 RON: key price factors, pitfalls to avoid, and how to estimate the right budget.",
+      readTime: "7 min",
       href: "/blog/cat-costa-un-site-in-romania-2026.html",
       label: "Read article",
     },
     {
       tag: "comparison · july 2026",
-      title: "WordPress or custom site what to choose in 2026?",
+      title:
+        "WordPress vs. Custom Development: Which is right for your business?",
       excerpt:
-        "Full comparison: costs, speed, SEO, security and when to choose each option for your business.",
-      readTime: "7 min",
+        "An objective breakdown of long-term maintenance costs, performance, security, and scalability.",
+      readTime: "6 min",
       href: "/blog/wordpress-sau-site-custom-2026.html",
       label: "Read article",
     },
     {
-      tag: "SEO · july 2026",
-      title: "SEO for SMEs: how to appear on Google first page",
+      tag: "SEO & Optimization · july 2026",
+      title:
+        "SEO for SMEs: Practical foundations for organic search visibility",
       excerpt:
-        "Practical guide with concrete steps for small businesses in Romania keywords, Google Business Profile, on-page optimization and free tools.",
-      readTime: "10 min",
+        "Actionable steps covering on-page optimization, site architecture, Google Business Profile, and essential technical aspects.",
+      readTime: "8 min",
       href: "/blog/seo-pentru-imm-uri-romania.html",
       label: "Read article",
     },
@@ -74,18 +78,18 @@ export default function Blog() {
       <div className="wrap">
         <div className="flex flex-col xs:flex-row xs:items-end justify-between gap-4 mb-10 md:mb-14">
           <div>
-            <Tag>{isRO ? "resurse gratuite" : "free resources"}</Tag>
+            <Tag>{isRO ? "resurse & articole" : "resources & articles"}</Tag>
             <h2 className="font-bricolage font-bold text-[clamp(22px,4vw,38px)] leading-[1.1] tracking-[-0.03em]">
               {isRO
-                ? "Ghiduri și sfaturi pentru afacerea ta"
-                : "Guides and tips for your business"}
+                ? "Ghiduri și recomandări pentru proiectul tău"
+                : "Guides and insights for your digital presence"}
             </h2>
           </div>
           <a
             href="/blog/cat-costa-un-site-in-romania-2026.html"
             className="font-mono text-[12.5px] text-mint hover:underline flex-shrink-0"
           >
-            {isRO ? "Vezi toate →" : "See all →"}
+            {isRO ? "Toate articolele →" : "See all articles →"}
           </a>
         </div>
 
