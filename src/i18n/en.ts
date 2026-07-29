@@ -32,7 +32,7 @@ const en: I18nData = {
   pos_tag: "our positioning",
   pos_h2: "Who we are, who we serve,<br/>and why it matters.",
   pos_sub:
-    "Every serious business knows exactly where it stands in the market. Here's where Artclick stands without ambiguity.",
+    "Every serious business knows exactly where it stands in the market. Here's where Artcllick stands without ambiguity.",
   pos_rows: [
     {
       key: "For",
@@ -43,7 +43,7 @@ const en: I18nData = {
       val: "<em>Are frustrated by expensive, slow agencies or cheap freelancers with no business vision and want a partner who</em> <strong>thinks in results, not billable hours.</strong>",
     },
     {
-      key: "Artclick",
+      key: "Artcllick",
       val: "Is a full-stack web development studio powered by AI, delivering original websites and applications in 48–120h, with business strategy included in every project.",
       highlight: true,
     },
@@ -52,7 +52,7 @@ const en: I18nData = {
       val: "<em>Traditional agencies that deliver templates in 3 months</em> or <em>freelancers who disappear after payment</em> with no guarantees, no documentation, no continuity.",
     },
     {
-      key: "Artclick is",
+      key: "Artcllick is",
       val: "The only partner that combines <strong>fast execution</strong>, <strong>business consultant thinking</strong> and <strong>personal accountability</strong> one person with their name on every deliverable. Fixed price. Guaranteed contractually.",
       highlight: true,
     },
@@ -128,14 +128,14 @@ const en: I18nData = {
   ],
   // compare
   cmp_tag: "comparison",
-  cmp_h2: "Why Artclick wins<br/>the comparison every time.",
+  cmp_h2: "Why Artcllick wins<br/>the comparison every time.",
   cmp_p:
     "It's not about price. It's about the total value you get speed, quality, business thinking and personal accountability.",
   cmp_headers: [
     "Criteria",
     "Traditional Agency",
     "Cheap Freelancer",
-    "✦ Artclick",
+    "✦ Artcllick",
   ],
   cmp_rows: [
     ["Delivery time", "6–12 weeks", "2–4 weeks", "48h — 5 days"],
@@ -156,7 +156,7 @@ const en: I18nData = {
       "Modern tooling & process",
       "✗ old processes",
       "✗ rarely",
-      "✓ Artclick standard",
+      "✓ Artcllick standard",
     ],
     [
       "Full-stack (FE + BE + DB)",
@@ -192,10 +192,10 @@ const en: I18nData = {
   mani_p2:
     "We've seen too many cheap freelancers take the money, deliver something functional and disappear leaving the client without documentation, without account access, without any guarantee.",
   mani_p3:
-    "Artclick exists in the space between the two extremes. Small enough to care about every project personally. Capable enough to deliver what any agency promises faster and more transparently.",
+    "Artcllick exists in the space between the two extremes. Small enough to care about every project personally. Capable enough to deliver what any agency promises faster and more transparently.",
   mani_p4:
     "We invest in modern tooling and processes to deliver more in less time. Every hour saved is invested in strategic thinking for your project.",
-  mani_founder: "Artclick Studio",
+  mani_founder: "Artcllick Studio",
   mani_role: "Frontend & Full-stack · Romania",
   // projects
   tag_projects: "selected projects",
@@ -271,7 +271,7 @@ const en: I18nData = {
   cta_p:
     "A 15-minute conversation with no commitments. If we can bring you real value we tell you exactly how. If not we tell you that upfront and save you the time.",
   cta_btn: "Book the free consultation →",
-  footer_copy: "© 2026 Artclick",
+  footer_copy: "© 2026 Artcllick",
   footer_tagline: "Web development studio for businesses that want to grow.",
   footer_contact_title: "Contact",
   footer_links_title: "Navigation",

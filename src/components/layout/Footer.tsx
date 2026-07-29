@@ -78,7 +78,7 @@ export default function Footer() {
                 style={{ boxShadow: "0 0 10px rgba(13,217,197,0.55)" }}
               />
               <span className="font-bricolage font-bold text-[18px] text-ink">
-                artclick
+                Artcllick
               </span>
             </div>
 
@@ -126,14 +126,14 @@ export default function Footer() {
             <ul className="flex flex-col gap-2 xs:gap-3">
               <li>
                 <a
-                  href="mailto:artclickon@outlook.com"
+                  href="mailto:Artcllickon@outlook.com"
                   className="text-[11.5px] xs:text-[13px] text-ink-dim hover:text-mint transition-colors
                     inline-flex items-center gap-1 xs:gap-1.5 cursor-none leading-tight"
                 >
                   <span className="hidden xs:inline">
-                    artclickon@outlook.com
+                    Artcllickon@outlook.com
                   </span>
-                  <span className="xs:hidden">artclickon@outlook.com</span>
+                  <span className="xs:hidden">Artcllickon@outlook.com</span>
                   <ArrowIcon />
                 </a>
               </li>

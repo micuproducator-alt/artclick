@@ -32,7 +32,7 @@ const ro: I18nData = {
   pos_tag: "poziționarea noastră",
   pos_h2: "Cine suntem, pentru cine<br/>și de ce contează.",
   pos_sub:
-    "Fiecare business serios știe exact unde stă în piață. Iată unde stă Artclick fără ambiguitate.",
+    "Fiecare business serios știe exact unde stă în piață. Iată unde stă Artcllick fără ambiguitate.",
   pos_rows: [
     {
       key: "Pentru",
@@ -43,7 +43,7 @@ const ro: I18nData = {
       val: "<em>Sunt frustrați de agenții scumpe și lente sau de freelanceri ieftini fără viziune de business și vor un partener care</em> <strong>gândește în rezultate, nu în ore facturate.</strong>",
     },
     {
-      key: "Artclick",
+      key: "Artcllick",
       val: "Este un studio de dezvoltare web full-stack accelerat de AI, care livrează site-uri și aplicații originale în 48–120h, cu strategie de business inclusă în fiecare proiect.",
       highlight: true,
     },
@@ -52,7 +52,7 @@ const ro: I18nData = {
       val: "<em>De agențiile clasice care livrează template-uri în 3 luni</em> sau <em>freelancerii care dispar după ce primesc banii</em> fără garanții, fără documentație, fără continuitate.",
     },
     {
-      key: "Artclick este",
+      key: "Artcllick este",
       val: "Singurul partener care combină <strong>execuție rapidă</strong>, <strong>gândirea unui consultant de business</strong> și <strong>responsabilitatea personală</strong> a unui om cu numele pe fiecare livrabil la un preț fix, garantat contractual.",
       highlight: true,
     },
@@ -128,14 +128,14 @@ const ro: I18nData = {
   ],
   // compare
   cmp_tag: "comparație",
-  cmp_h2: "De ce Artclick câștigă<br/>de fiecare dată comparația.",
+  cmp_h2: "De ce Artcllick câștigă<br/>de fiecare dată comparația.",
   cmp_p:
     "Nu e vorba de preț. E vorba de valoarea totală viteză, calitate, gândire de business și responsabilitate personală.",
   cmp_headers: [
     "Criteriu",
     "Agenție clasică",
     "Freelancer ieftin",
-    "✦ Artclick",
+    "✦ Artcllick",
   ],
   cmp_rows: [
     ["Termen de livrare", "6–12 săptămâni", "2–4 săptămâni", "48h — 5 zile"],
@@ -161,7 +161,7 @@ const ro: I18nData = {
       "Tooling & proces modern",
       "✗ procese vechi",
       "✗ rar",
-      "✓ standard la Artclick",
+      "✓ standard la Artcllick",
     ],
     [
       "Full-stack (FE + BE + DB)",
@@ -197,10 +197,10 @@ const ro: I18nData = {
   mani_p2:
     "Am văzut prea mulți freelanceri ieftini care iau banii, livrează ceva funcțional și dispar lăsând clientul fără documentație, fără acces la conturi, fără nicio garanție.",
   mani_p3:
-    "Artclick există în spațiul dintre cele două extreme. Suficient de mici ca să ne pese de fiecare proiect personal. Suficient de capabili ca să livrăm ce promite orice agenție mai repede și mai transparent.",
+    "Artcllick există în spațiul dintre cele două extreme. Suficient de mici ca să ne pese de fiecare proiect personal. Suficient de capabili ca să livrăm ce promite orice agenție mai repede și mai transparent.",
   mani_p4:
     "Investim în tooling și procese moderne ca să livrăm mai mult în mai puțin timp. Fiecare oră economisită o investim în gândire strategică pentru proiectul tău.",
-  mani_founder: "Artclick Studio",
+  mani_founder: "Artcllick Studio",
   mani_role: "Frontend & Full-stack · România",
   // projects
   tag_projects: "proiecte selectate",
@@ -276,7 +276,7 @@ const ro: I18nData = {
   cta_p:
     "O conversație de 15 minute fără angajamente. Dacă putem să-ți aducem valoare reală îți spunem exact cum. Dacă nu îți spunem asta de la început și îți economisim timpul.",
   cta_btn: "Rezervă consultația gratuită →",
-  footer_copy: "© 2026 Artclick",
+  footer_copy: "© 2026 Artcllick",
   footer_tagline:
     "Studio de dezvoltare web pentru afaceri care vor să crească.",
   footer_contact_title: "Contact",
