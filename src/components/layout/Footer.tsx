@@ -221,13 +221,27 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom bar ── */}
+      {/* ── Bottom bar ── */}
       <div className="border-t border-[var(--line)]">
         <div
           className="wrap py-3 xs:py-4
           flex flex-row items-center justify-between gap-2 flex-wrap"
         >
           <span className="text-[11px] xs:text-[12px] text-ink-faint font-mono">
-            {i18n.footer_copy} · {i18n.footer_legal}
+            {i18n.footer_copy} · {i18n.footer_legal} ·{" "}
+            <a
+              href="/terms-and-conditions.html"
+              className="hover:text-mint transition-colors cursor-none"
+            >
+              Terms
+            </a>{" "}
+            ·{" "}
+            <a
+              href="/privacy-policy.html"
+              className="hover:text-mint transition-colors cursor-none"
+            >
+              Privacy
+            </a>
           </span>
           <div className="flex items-center gap-3 xs:gap-4">
             <span className="text-[11px] xs:text-[12px] text-ink-faint font-mono flex items-center gap-1.5">
