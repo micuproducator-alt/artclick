@@ -3,7 +3,7 @@ import { useLang } from "../../context/LangContext";
 import { useModal } from "../../context/ModalContext";
 import Projects from "./Projects";
 import Services from "./Services";
-import WhyArtcllick from "./WhyArtcllick";
+import WhyArtcllick from "./WhyArtclick";
 import Process from "./Process";
 
 export default function SectionTabs() {

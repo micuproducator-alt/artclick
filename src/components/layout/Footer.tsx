@@ -72,12 +72,14 @@ export default function Footer() {
         >
           {/* ── Brand ── */}
           <div className="flex flex-col gap-4 col-span-2 sm:col-span-1">
-            <div className="font-bricolage font-bold text-[19px] flex items-center gap-2 text-ink tracking-wider [font-variant-ligatures:none]">
+            <div className="flex items-center gap-2">
               <span
-                className="w-[7px] h-[7px] rounded-full bg-mint
-    shadow-[0_0_10px_rgba(13,217,197,0.6)]"
+                className="w-[7px] h-[7px] rounded-full bg-mint flex-shrink-0"
+                style={{ boxShadow: "0 0 10px rgba(13,217,197,0.55)" }}
               />
-              Artcllick
+              <span className="font-bricolage font-bold text-[18px] text-ink">
+                Artcllick
+              </span>
             </div>
 
             <p className="text-[13.5px] text-ink-dim leading-[1.7] max-w-[220px]">
