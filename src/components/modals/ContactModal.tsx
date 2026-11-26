@@ -23,7 +23,7 @@ export default function ContactModal() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: form.name, email: form.email, message: form.msg, type: 'Contact rapid' }),
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.msg, type: 'Quick contact' }),
       })
       if (!res.ok) throw new Error()
       setSent(true)
@@ -48,14 +48,14 @@ export default function ContactModal() {
               <path d="M5 14L11.5 20.5L23 8" stroke="#0DD9C5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <h3 className="font-bricolage font-bold text-[22px] text-ink mb-2">Trimis!</h3>
-          <p className="text-[13.5px] text-ink-dim">Revin la tine în aceeași zi.</p>
+          <h3 className="font-bricolage font-bold text-[22px] text-ink mb-2">{i18n.modal_ok_h3}</h3>
+          <p className="text-[13.5px] text-ink-dim">{i18n.modal_ok_p}</p>
         </div>
       ) : (
         <>
           <div className="flex items-center gap-2 mb-3">
             <span className="w-4 h-px bg-mint" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-mint">contact rapid</span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-mint">{i18n.modal_tag}</span>
           </div>
           <h3 className="font-bricolage font-bold text-[24px] tracking-[-0.02em] text-ink mb-1.5">{i18n.modal_h3}</h3>
           <p className="text-[13.5px] text-ink-dim mb-6 leading-[1.6]">{i18n.modal_sub}</p>
@@ -78,7 +78,7 @@ export default function ContactModal() {
             </div>
             {error && (
               <p className="text-[12.5px] text-red-400 text-center">
-                Eroare la trimitere. Încearcă din nou.
+                Something went wrong. Please try again.
               </p>
             )}
             <button type="submit" disabled={loading}
@@ -88,8 +88,8 @@ export default function ContactModal() {
               {loading ? (
                 <><svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="31.4" strokeDashoffset="10" strokeLinecap="round"/>
-                </svg>Se trimite...</>
-              ) : 'Trimite mesajul →'}
+                </svg>Sending...</>
+              ) : i18n.modal_submit}
             </button>
           </form>
         </>

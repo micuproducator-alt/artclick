@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <title>Page not found | Artcllick</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #070d1a;
+        color: #eef4ff;
+        font-family: Inter, sans-serif;
+        padding: 24px;
+        text-align: center;
+      }
+      .code {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: clamp(72px, 16vw, 160px);
+        line-height: 1;
+        background: linear-gradient(90deg, #0dd9c5, #38bdf8);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      h1 {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: clamp(22px, 4vw, 32px);
+        margin: 16px 0 10px;
+      }
+      p { color: #7b8eb5; max-width: 440px; margin: 0 auto 28px; line-height: 1.6; }
+      .links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+      a {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 500;
+        border: 1px solid rgba(13, 217, 197, 0.35);
+        color: #eef4ff;
+      }
+      a.primary { background: #0dd9c5; color: #070d1a; border-color: #0dd9c5; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="code">404</div>
+      <h1>This page doesn’t exist.</h1>
+      <p>It may have been moved, or the address might contain a typo.</p>
+      <div class="links">
+        <a class="primary" href="/">Back to homepage</a>
+        <a href="/#contact">Get a free quote</a>
+      </div>
+    </main>
+  </body>
+</html>

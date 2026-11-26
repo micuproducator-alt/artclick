@@ -39,7 +39,7 @@ export default function CTA() {
 
             {/* Trust signals inline */}
             <div className="flex flex-wrap gap-4 mt-5">
-              {['Răspuns în 24h', 'Ofertă gratuită', 'Fără angajamente'].map(s => (
+              {['Reply within 24h', 'Free quote', 'No obligation'].map(s => (
                 <span key={s} className="flex items-center gap-1.5 text-[12px] text-ink-dim font-mono">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path d="M2 6L5 9L10 3" stroke="#0DD9C5" strokeWidth="1.5" strokeLinecap="round"/>

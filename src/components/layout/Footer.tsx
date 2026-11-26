@@ -22,6 +22,14 @@ const InstagramIcon = () => (
     <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
   </svg>
 );
+// Add your real profile URLs here; icons without a URL are hidden.
+const SOCIAL_LINKS = [
+  { label: "LinkedIn", icon: <LinkedInIcon />, href: "" },
+  { label: "Instagram", icon: <InstagramIcon />, href: "" },
+].filter((s) => s.href);
+
+const CONTACT_EMAIL = "artclickon@outlook.com";
+
 const ArrowIcon = () => (
   <svg
     width="11"
@@ -42,14 +50,9 @@ const ArrowIcon = () => (
 export default function Footer() {
   const { i18n } = useLang();
   const { openModal } = useModal();
-  const isRO = i18n.lang_toggle === "EN";
 
   const navLinks = [
     { label: i18n.nav_services, action: () => openModal("services") },
-    {
-      label: i18n.nav_why ?? (isRO ? "De ce noi" : "Why us"),
-      action: () => openModal("services"),
-    },
     { label: i18n.nav_projects, action: () => openModal("projects") },
     { label: i18n.nav_process, action: () => openModal("process") },
   ];
@@ -59,9 +62,9 @@ export default function Footer() {
       {/* ── Main content ── */}
       <div className="wrap py-8 xs:py-10 sm:py-14 lg:py-20">
         {/*
-          Mobile     (< 576px):  1 coloană
-          xs         (≥ 576px):  2 coloane  — Brand | Contact  /  Nav | Social
-          sm/Tablet  (≥ 768px):  4 coloane
+          Mobile     (< 576px):  1 column
+          xs         (≥ 576px):  2 columns — Brand | Contact  /  Nav | Social
+          sm/Tablet  (≥ 768px):  4 columns
         */}
         <div
           className="
@@ -86,7 +89,7 @@ export default function Footer() {
               {i18n.footer_tagline}
             </p>
 
-            {/* Badge — stiluri inline ca sa nu depinda de Tailwind breakpoints */}
+            {/* Availability badge */}
             <span
               style={{
                 display: "inline-flex",
@@ -126,14 +129,11 @@ export default function Footer() {
             <ul className="flex flex-col gap-2 xs:gap-3">
               <li>
                 <a
-                  href="mailto:Artcllickon@outlook.com"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="text-[11.5px] xs:text-[13px] text-ink-dim hover:text-mint transition-colors
                     inline-flex items-center gap-1 xs:gap-1.5 cursor-none leading-tight"
                 >
-                  <span className="hidden xs:inline">
-                    Artcllickon@outlook.com
-                  </span>
-                  <span className="xs:hidden">Artcllickon@outlook.com</span>
+                  <span>{CONTACT_EMAIL}</span>
                   <ArrowIcon />
                 </a>
               </li>
@@ -144,7 +144,7 @@ export default function Footer() {
                     inline-flex items-center gap-1 xs:gap-1.5 cursor-none
                     bg-transparent border-none font-inter text-left leading-tight"
                 >
-                  {i18n.cta_btn} <ArrowIcon />
+                  {i18n.cta_btn.replace(" →", "")} <ArrowIcon />
                 </button>
               </li>
               <li className="pt-1">
@@ -178,21 +178,10 @@ export default function Footer() {
           {/* ── Social ── */}
           <div className="flex flex-col gap-4">
             <h4 className="font-mono text-[10px] xs:text-[10.5px] uppercase tracking-[0.12em] text-ink-faint">
-              {i18n.footer_social_title}
+              {SOCIAL_LINKS.length ? i18n.footer_social_title : "Track record"}
             </h4>
-            <div className="flex gap-2.5">
-              {[
-                {
-                  label: "LinkedIn",
-                  icon: <LinkedInIcon />,
-                  href: "https://www.linkedin.com",
-                },
-                {
-                  label: "Instagram",
-                  icon: <InstagramIcon />,
-                  href: "https://www.instagram.com",
-                },
-              ].map((s) => (
+            <div className={SOCIAL_LINKS.length ? "flex gap-2.5" : "hidden"}>
+              {SOCIAL_LINKS.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
@@ -213,14 +202,13 @@ export default function Footer() {
                 4+
               </div>
               <div className="text-[12px] text-ink-faint mt-1">
-                {isRO ? "proiecte livrate" : "projects delivered"}
+                projects delivered
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── Bottom bar ── */}
       {/* ── Bottom bar ── */}
       <div className="border-t border-[var(--line)]">
         <div

@@ -115,12 +115,9 @@ function ProjectCard({ card, type, index }: { card: WorkCard; type: PT; index: n
   return <div>{inner}</div>
 }
 
-// Card "Proiectul tău"
+// "Your project" card
 function YourProjectCard() {
   const { openModal } = useModal()
-  const { i18n } = useLang()
-  const isRO = i18n.lang_toggle === 'EN'
-
   return (
     <div onClick={() => openModal('quote')}
       className="group relative rounded-[20px] overflow-hidden
@@ -137,14 +134,14 @@ function YourProjectCard() {
           </svg>
         </div>
         <h3 className="font-bricolage font-semibold text-[15px] text-ink mb-1">
-          {isRO ? 'Proiectul tău următor' : 'Your next project'}
+          Your project here
         </h3>
         <p className="text-[12px] text-ink-dim mb-3">
-          {isRO ? 'Vrei să fii aici?' : 'Want to be here?'}
+          Let's build what's next for your business.
         </p>
         <span className="font-mono text-[11.5px] text-mint flex items-center justify-center gap-1.5
           group-hover:gap-2.5 transition-all">
-          {isRO ? 'Începe un proiect' : 'Start a project'} →
+          Start a project →
         </span>
       </div>
     </div>
@@ -159,7 +156,7 @@ export default function Projects() {
   const types: PT[] = ['trading', 'firma', 'locallio', 'pretcinstit']
 
   return (
-    <section id="proiecte" className="section-pad scroll-mt-[80px]">
+    <section id="work" className="section-pad scroll-mt-[80px]">
       <div className="wrap">
 
         {/* Header */}

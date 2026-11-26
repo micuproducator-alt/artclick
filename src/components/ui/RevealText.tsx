@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 
 interface RevealTextProps {
   text: string
@@ -22,16 +22,16 @@ export default function RevealText({ text, className = '', delay = 0, as: Tag = 
     return () => obs.disconnect()
   }, [])
 
-  const words = text.split(' ')
+  const words = text.split(/\s+/).filter(Boolean)
 
   return (
     // @ts-ignore — dynamic tag
     <Tag ref={ref} className={className} aria-label={text}>
       {words.map((word, i) => (
-        <span
-          key={i}
+        // spațiu real între cuvinte (nu doar margin), ca Google să citească textul corect
+        <Fragment key={i}>{i > 0 && ' '}<span
           className="inline-block overflow-hidden"
-          style={{ marginRight: '0.28em', verticalAlign: 'bottom' }}
+          style={{ verticalAlign: 'bottom' }}
         >
           <span
             style={{
@@ -44,7 +44,7 @@ export default function RevealText({ text, className = '', delay = 0, as: Tag = 
           >
             {word}
           </span>
-        </span>
+        </span></Fragment>
       ))}
     </Tag>
   )

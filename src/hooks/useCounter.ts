@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
 
 export function useCounter(target: string, duration = 1400) {
-  const [display, setDisplay] = useState('0')
+  // Start with the real value so the prerendered HTML shows real numbers;
+  // the count-up animation starts when the element scrolls into view.
+  const [display, setDisplay] = useState(target)
   const ref = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {

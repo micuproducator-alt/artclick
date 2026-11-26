@@ -8,7 +8,6 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Hero from "./components/sections/Hero";
 import SectionTabs from "./components/sections/SectionTabs";
-import Blog from "./components/sections/Blog";
 import CTA from "./components/sections/CTA";
 import ContactModal from "./components/modals/ContactModal";
 import QuoteModal from "./components/modals/QuoteModal";
@@ -40,7 +39,6 @@ export default function App() {
           <main>
             <Hero />
             <SectionTabs />
-            <Blog />
             <CTA />
           </main>
           <Footer />

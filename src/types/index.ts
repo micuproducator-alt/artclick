@@ -64,7 +64,7 @@ export interface ModalOpts {
   projects: boolean;
 }
 
-export type Lang = "ro" | "en";
+export type Lang = "en";
 
 export interface I18nData {
   nav_services: string;

@@ -89,11 +89,11 @@ function clientEmail(d: Record<string, string>) {
     <div style="height:2px;background:linear-gradient(90deg,transparent 0%,#0DD9C5 40%,#38BDF8 70%,transparent 100%)"></div>
     <div style="padding:36px">
       <h1 style="font-size:24px;font-weight:800;color:#EEF4FF;margin:0 0 14px;letter-spacing:-.02em">
-        Am primit mesajul tău, ${firstName}! ✓
+        Thanks, ${firstName}! We've received your message ✓
       </h1>
       <p style="font-size:15px;color:#7B8EB5;margin:0 0 28px;line-height:1.75">
-        Mulțumesc că ai contactat Artcllick. Revin la tine
-        <strong style="color:#0DD9C5"> în cel mult 24 de ore.</strong>
+        Thank you for contacting Artcllick. We'll get back to you
+        <strong style="color:#0DD9C5"> within 24 hours.</strong>
       </p>
       ${
         d.message
@@ -101,20 +101,20 @@ function clientEmail(d: Record<string, string>) {
       <div style="background:rgba(13,217,197,0.06);border:1px solid rgba(13,217,197,0.15);
         border-radius:12px;padding:22px;margin-bottom:28px">
         <p style="font-family:monospace;font-size:10.5px;color:#0DD9C5;text-transform:uppercase;
-          letter-spacing:.1em;margin:0 0 12px;font-weight:700">Mesajul tău</p>
+          letter-spacing:.1em;margin:0 0 12px;font-weight:700">Your message</p>
         <p style="font-size:13.5px;color:#7B8EB5;margin:0;line-height:1.6">${d.message}</p>
       </div>`
           : ""
       }
       <div style="padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)">
-        <p style="font-size:13px;color:#7B8EB5;margin:0 0 8px">Ai o întrebare urgentă?</p>
-        <a href="mailto:contact@Artcllick.ro" style="color:#0DD9C5;font-size:14px;
-          text-decoration:none;font-weight:600">contact@Artcllick.ro</a>
+        <p style="font-size:13px;color:#7B8EB5;margin:0 0 8px">Have an urgent question?</p>
+        <a href="mailto:artclickon@outlook.com" style="color:#0DD9C5;font-size:14px;
+          text-decoration:none;font-weight:600">artclickon@outlook.com</a>
       </div>
     </div>
   </div>
   <p style="font-size:12px;color:#3D5070;text-align:center;margin-top:28px;line-height:1.7">
-    © 2026 Artcllick · contact@Artcllick.ro · România
+    © 2026 Artcllick · www.artcllick.ro
   </p>
 </div></body></html>`;
 }
@@ -174,7 +174,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         body: JSON.stringify({
           from: `Artcllick <${FROM}>`,
           to: [d.email],
-          subject: `Am primit mesajul tău! Revin în 24h ✓`,
+          subject: `We've received your message, we'll reply within 24h ✓`,
           html: clientEmail(d),
         }),
       });

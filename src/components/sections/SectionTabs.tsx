@@ -15,21 +15,11 @@ export default function SectionTabs() {
   const indRef = useRef<HTMLSpanElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const isEN = i18n.lang_toggle === "RO";
-
   const tabs = [
-    {
-      label: i18n.nav_projects,
-      icon: "◈",
-      sub: isEN ? "4 proiecte live" : "4 live projects",
-    },
-    { label: i18n.nav_services, icon: "⬚", sub: isEN ? "5 tipuri" : "5 types" },
-    {
-      label: i18n.nav_why ?? "De ce noi",
-      icon: "✦",
-      sub: isEN ? "3 garanții" : "3 guarantees",
-    },
-    { label: i18n.nav_process, icon: "→", sub: isEN ? "4 pași" : "4 steps" },
+    { label: i18n.nav_projects, icon: "◈", sub: `${i18n.work_cards.length} live projects` },
+    { label: i18n.nav_services, icon: "⬚", sub: `${i18n.svc_bento.length} services` },
+    { label: i18n.nav_why ?? "Why us", icon: "✦", sub: "3 guarantees" },
+    { label: i18n.nav_process, icon: "→", sub: `${i18n.proc_steps_ext.length} steps` },
   ];
 
   const panels = [<Projects />, <Services />, <WhyArtcllick />, <Process />];

@@ -55,12 +55,12 @@ export default function QuoteModal() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: `${form.lastName} ${form.firstName}`,
+          name: `${form.firstName} ${form.lastName}`,
           email: form.email, phone: form.phone,
           business: form.business,
           hasDescription: form.hasDescription,
           hasLogo: form.hasLogo, deadline: form.deadline,
-          message: form.business, type: 'Cerere ofertă',
+          message: form.business, type: 'Quote request',
         }),
       })
       if (!res.ok) throw new Error()
@@ -85,11 +85,11 @@ export default function QuoteModal() {
               </svg>
             </div>
           </div>
-          <h3 className="font-bricolage font-bold text-[24px] text-ink mb-3">Cererea a fost trimisă!</h3>
+          <h3 className="font-bricolage font-bold text-[24px] text-ink mb-3">Request received!</h3>
           <p className="text-[14px] text-ink-dim leading-[1.75] max-w-[280px] mx-auto mb-6">
-            Revin cu o ofertă personalizată în <strong className="text-mint">maximum 24 de ore.</strong>
+            You'll receive a tailored, fixed-price proposal <strong className="text-mint">within 24 hours.</strong>
           </p>
-          {['✓  Email de confirmare trimis', '✓  Ofertă cu preț fix în 24h', '✓  Te sun personal cu detalii'].map((t, i) => (
+          {['✓  Confirmation email sent', '✓  Fixed-price proposal within 24h', '✓  A personal follow-up call'].map((t, i) => (
             <div key={i} className="text-[13px] text-mint font-mono mb-1.5">{t}</div>
           ))}
         </div>
@@ -98,15 +98,15 @@ export default function QuoteModal() {
           <div className="mb-5">
             <div className="flex items-center gap-2 mb-3">
               <span className="w-4 h-px bg-mint" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-mint">cerere ofertă gratuită</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-mint">free quote</span>
             </div>
-            <h3 className="font-bricolage font-bold text-[24px] tracking-[-0.02em] text-ink mb-1.5">Spune-mi despre proiectul tău</h3>
-            <p className="text-[13.5px] text-ink-dim leading-[1.6]">Completează formularul și primești o ofertă personalizată în 24h.</p>
+            <h3 className="font-bricolage font-bold text-[24px] tracking-[-0.02em] text-ink mb-1.5">Tell us about your project</h3>
+            <p className="text-[13.5px] text-ink-dim leading-[1.6]">Answer a few quick questions and get a tailored proposal within 24 hours.</p>
           </div>
 
           {/* Progress */}
           <div className="flex items-center gap-2 mb-7">
-            {[{ n: 1, label: 'Date personale' }, { n: 2, label: 'Proiectul tău' }].map(({ n, label }) => {
+            {[{ n: 1, label: 'About you' }, { n: 2, label: 'Your project' }].map(({ n, label }) => {
               const done = step > n; const active = step === n
               return (
                 <div key={n} className={`flex items-center gap-2 ${n < 2 ? 'flex-1' : ''}`}>
@@ -124,59 +124,59 @@ export default function QuoteModal() {
           {step === 1 && (
             <div className="flex flex-col gap-4">
               <div className="grid grid-cols-2 gap-3">
-                <div>{lbl('Nume *')}<input type="text" placeholder="Popescu" value={form.lastName} onChange={inp('lastName')} className={inputCls}/></div>
-                <div>{lbl('Prenume *')}<input type="text" placeholder="Ion" value={form.firstName} onChange={inp('firstName')} className={inputCls}/></div>
+                <div>{lbl('First name *')}<input type="text" placeholder="Jane" autoComplete="given-name" value={form.firstName} onChange={inp('firstName')} className={inputCls}/></div>
+                <div>{lbl('Last name *')}<input type="text" placeholder="Smith" autoComplete="family-name" value={form.lastName} onChange={inp('lastName')} className={inputCls}/></div>
               </div>
-              <div>{lbl('Email *')}<input type="email" placeholder="ion@firma.ro" value={form.email} onChange={inp('email')} className={inputCls}/></div>
+              <div>{lbl('Email *')}<input type="email" placeholder="jane@company.com" autoComplete="email" value={form.email} onChange={inp('email')} className={inputCls}/></div>
               <div>
-                {lbl('Număr de telefon *')}
-                <input type="tel" placeholder="07XX XXX XXX" value={form.phone} onChange={inp('phone')} className={inputCls}/>
-                <p className="text-[11.5px] text-ink-faint mt-1.5">Te sun personal în 24h cu oferta</p>
+                {lbl('Phone number *')}
+                <input type="tel" placeholder="+44 7700 900000" autoComplete="tel" value={form.phone} onChange={inp('phone')} className={inputCls}/>
+                <p className="text-[11.5px] text-ink-faint mt-1.5">We'll call you within 24 hours to discuss the proposal</p>
               </div>
               <button type="button" onClick={() => { if (step1Valid) setStep(2) }} disabled={!step1Valid}
                 className="w-full py-3.5 rounded-full bg-mint text-bg font-bold text-[15px] mt-2
                   hover:shadow-[0_0_28px_rgba(13,217,197,0.45)] transition-all cursor-none disabled:opacity-25">
-                Continuă →
+                Continue →
               </button>
             </div>
           )}
 
           {step === 2 && (
             <form onSubmit={submit} className="flex flex-col gap-5">
-              <div>{lbl('Ce face firma dvs.? *')}<textarea placeholder="Ex: Suntem o firmă de instalații din Cluj..." value={form.business} onChange={inp('business')} rows={3} required className={`${inputCls} resize-none`}/></div>
+              <div>{lbl('What does your business do? *')}<textarea placeholder="E.g. We're an interior design studio in London looking for a new website..." value={form.business} onChange={inp('business')} rows={3} required className={`${inputCls} resize-none`}/></div>
               <div>
-                {lbl('Aveți deja descrierea pregătită pentru site?')}
+                {lbl('Is your website copy ready?')}
                 <div className="flex flex-col gap-2">
-                  {['Da, am textele gata', 'Parțial, am câteva idei', 'Nu, am nevoie de ajutor'].map(opt => (
+                  {['Yes, the copy is ready', 'Partly, I have some ideas', 'No, I need help with it'].map(opt => (
                     <RadioCard key={opt} label={opt} selected={form.hasDescription === opt} onClick={() => set('hasDescription', opt)}/>
                   ))}
                 </div>
               </div>
               <div>
-                {lbl('Aveți logo și paletă de culori?')}
+                {lbl('Do you have a logo and brand colours?')}
                 <div className="flex flex-col gap-2">
-                  {['Da, am logo + culori definite', 'Am logo, dar fără culori stabilite', 'Nu am nimic pregătit'].map(opt => (
+                  {['Yes, logo and colours are defined', 'I have a logo, but no colours', 'Nothing yet'].map(opt => (
                     <RadioCard key={opt} label={opt} selected={form.hasLogo === opt} onClick={() => set('hasLogo', opt)}/>
                   ))}
                 </div>
               </div>
               <div>
-                {lbl('Care este termenul dorit?')}
+                {lbl('When do you need it?')}
                 <div className="flex flex-wrap gap-2">
-                  {['Urgent (1 săptămână)', '2–3 săptămâni', 'O lună', 'Fără urgență'].map(opt => (
+                  {['Urgent (within 1 week)', '2–3 weeks', 'Within a month', 'No rush'].map(opt => (
                     <Pill key={opt} label={opt} selected={form.deadline === opt} onClick={() => set('deadline', opt)}/>
                   ))}
                 </div>
               </div>
 
               {status === 'error' && (
-                <p className="text-[12.5px] text-red-400 text-center">Eroare la trimitere. Încearcă din nou.</p>
+                <p className="text-[12.5px] text-red-400 text-center">Something went wrong. Please try again.</p>
               )}
 
               <div className="flex gap-3 pt-1">
                 <button type="button" onClick={() => setStep(1)}
                   className="px-5 py-3 rounded-full border-2 border-white/15 text-ink-dim text-[13.5px] hover:border-white/30 hover:text-ink transition-all cursor-none flex-shrink-0">
-                  ← Înapoi
+                  ← Back
                 </button>
                 <button type="submit" disabled={!form.business.trim() || status === 'loading'}
                   className="flex-1 py-3 rounded-full bg-mint text-bg font-bold text-[15px]
@@ -185,11 +185,11 @@ export default function QuoteModal() {
                   {status === 'loading' ? (
                     <><svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none">
                       <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="31.4" strokeDashoffset="10" strokeLinecap="round"/>
-                    </svg>Se trimite...</>
-                  ) : 'Trimite cererea →'}
+                    </svg>Sending...</>
+                  ) : 'Send request →'}
                 </button>
               </div>
-              <p className="text-center text-[11.5px] text-ink-faint">Zero spam · Răspuns garantat în 24h</p>
+              <p className="text-center text-[11.5px] text-ink-faint">No spam · Guaranteed reply within 24h</p>
             </form>
           )}
         </>

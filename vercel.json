@@ -5,10 +5,22 @@
       "maxDuration": 10
     }
   },
-  "rewrites": [
-    { "source": "/blog/:path*", "destination": "/blog/:path*" },
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/((?!api|blog|sitemap|robots).*)", "destination": "/index.html" }
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "artcllick.ro"
+        }
+      ],
+      "destination": "https://www.artcllick.ro/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/",
+      "permanent": true
+    }
   ]
 }

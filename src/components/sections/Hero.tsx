@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { useLang } from '../../context/LangContext'
 import { useModal } from '../../context/ModalContext'
 import { useCounter } from '../../hooks/useCounter'
@@ -119,14 +119,14 @@ function RevealH1({ html }: { html: string }) {
         const inner = part.startsWith('<span') ? part.replace(/<span[^>]*>(.*?)<\/span>/, '$1') : null
         const words = (inner ?? part.replace(/<br\/>/g, ' ')).split(' ').filter(Boolean)
         return words.map((word, wi) => (
-          <span key={`${pi}-${wi}`} className="inline-block overflow-hidden" style={{ marginRight: '0.28em', verticalAlign: 'bottom' }}>
+          <Fragment key={`${pi}-${wi}`}>{(pi > 0 || wi > 0) && ' '}<span className="inline-block overflow-hidden" style={{ verticalAlign: 'bottom' }}>
             <span className={inner ? 'grad-text inline-block' : 'inline-block'} style={{
               transform: vis ? 'translateY(0)' : 'translateY(110%)',
               opacity: vis ? 1 : 0,
               transition: `transform 0.8s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease`,
               transitionDelay: `${200 + (pi * 3 + wi) * 55}ms`,
             }}>{word}</span>
-          </span>
+          </span></Fragment>
         ))
       })}
     </h1>
@@ -142,7 +142,7 @@ export default function Hero() {
   return (
     <section className="relative z-10 overflow-hidden min-h-[100svh] flex flex-col justify-center pt-[80px] pb-12 md:pt-[100px] md:pb-20">
       <HeroOrbs />
-      <div className="wrap relative z-10 flex-1 flex flex-col justify-center">
+      <div className="wrap w-full relative z-10 flex-1 flex flex-col justify-center">
 
         {/* Status pill */}
         <div style={{ opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateY(12px)', transition: 'all 0.6s cubic-bezier(0.16,1,0.3,1)' }}

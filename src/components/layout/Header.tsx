@@ -3,7 +3,7 @@ import { useLang } from "../../context/LangContext";
 import { useModal } from "../../context/ModalContext";
 
 export default function Header() {
-  const { i18n, toggleLang } = useLang();
+  const { i18n } = useLang();
   const { openModal } = useModal();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -39,13 +39,13 @@ export default function Header() {
       >
         <div className="wrap flex items-center justify-between">
           {/* Logo */}
-          <div className="font-bricolage font-bold text-[19px] flex items-center gap-2 text-ink">
+          <a href="/" aria-label="Artcllick home" className="font-bricolage font-bold text-[19px] flex items-center gap-2 text-ink cursor-none">
             <span
               className="w-[7px] h-[7px] rounded-full bg-mint
               shadow-[0_0_10px_rgba(13,217,197,0.6)]"
             />
             Artcllick
-          </div>
+          </a>
 
           {/* Desktop nav */}
           <nav className="hidden sm:flex items-center gap-8">
@@ -63,13 +63,6 @@ export default function Header() {
 
           <div className="hidden sm:flex items-center gap-3">
             <button
-              onClick={toggleLang}
-              className="font-mono text-[12px] px-3 py-1.5 rounded-full border border-[var(--glass-border)]
-                text-ink-dim hover:border-mint hover:text-mint transition-all cursor-none"
-            >
-              {i18n.lang_toggle}
-            </button>
-            <button
               onClick={() => openModal("contact")}
               className="px-5 py-2.5 rounded-full bg-mint text-white text-[13.5px] font-medium
                 hover:bg-mint/90 transition-all cursor-none
@@ -81,13 +74,6 @@ export default function Header() {
 
           {/* Mobile */}
           <div className="flex sm:hidden items-center gap-2">
-            <button
-              onClick={toggleLang}
-              className="font-mono text-[11px] px-2.5 py-1.5 rounded-full border border-[var(--glass-border)]
-                text-ink-faint cursor-none"
-            >
-              {i18n.lang_toggle}
-            </button>
             <button
               onClick={() => setMenuOpen((o) => !o)}
               className="w-9 h-9 flex flex-col items-center justify-center gap-1.5 cursor-none
