@@ -57,8 +57,8 @@ export default function Services() {
               </div>
 
               {/* Time badge */}
-              <div className="hidden sm:flex items-center font-mono text-[11px] text-ink-faint
-                px-2.5 py-1 rounded-full border border-[var(--line)] flex-shrink-0">
+              <div className="hidden sm:flex items-center text-[12.5px] font-medium text-ink-dim
+                px-3 py-1 rounded-full border border-white/10 flex-shrink-0">
                 {TIMES[i]}
               </div>
 
@@ -66,7 +66,7 @@ export default function Services() {
               <button
                 onClick={() => openModal('quote')}
                 className="flex-shrink-0 flex items-center gap-1.5 text-[13px] text-mint font-medium
-                  opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-none
+                  opacity-0 group-hover:opacity-100 transition-all duration-200
                   -translate-x-2 group-hover:translate-x-0">
                 Get a quote
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -83,7 +83,7 @@ export default function Services() {
             Not sure which service you need?
           </p>
           <button onClick={() => openModal('quote')}
-            className="text-[13px] text-mint font-medium hover:underline cursor-none">
+            className="text-[13px] text-mint font-medium hover:underline">
             Tell us about your project →
           </button>
         </div>

@@ -51,7 +51,7 @@ export default function ServicesModal() {
       <button
         onClick={() => openModal('quote')}
         className="w-full py-3 rounded-full bg-mint border border-mint text-bg font-medium text-[14px]
-          hover:shadow-[0_0_28px_rgba(13,217,197,0.4)] transition-all cursor-none flex items-center justify-center gap-2">
+          hover:bg-[#3BE3D2] transition-all flex items-center justify-center gap-2">
         {i18n.svc_cta} ↗
       </button>
     </Modal>

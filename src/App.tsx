@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { LangProvider } from "./context/LangContext";
 import { ModalProvider, useModal } from "./context/ModalContext";
-import Cursor from "./components/ui/Cursor";
-import Grain from "./components/ui/Grain";
 import FloatingCTA from "./components/ui/FloatingCTA";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -32,8 +30,6 @@ export default function App() {
       <ModalProvider>
         <div className="bg-bg min-h-screen text-ink font-inter selection:bg-mint/20 selection:text-mint">
           <div className="grid-bg" />
-          <Grain />
-          <Cursor />
           <HashHandler />
           <Header />
           <main>

@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { useLang } from "../../context/LangContext";
-import { useModal } from "../../context/ModalContext";
 import Projects from "./Projects";
 import Services from "./Services";
 import WhyArtcllick from "./WhyArtclick";
@@ -8,7 +7,6 @@ import Process from "./Process";
 
 export default function SectionTabs() {
   const { i18n } = useLang();
-  const { openModal } = useModal();
   const [active, setActive] = useState(0);
   const [prev, setPrev] = useState<number | null>(null);
   const [dir, setDir] = useState<"r" | "l">("r");
@@ -67,7 +65,7 @@ export default function SectionTabs() {
                   tabRefs.current[i] = el;
                 }}
                 onClick={() => switchTab(i)}
-                className={`flex flex-col items-start px-3 xs:px-4 sm:px-5 py-3.5 md:py-4 cursor-none
+                className={`flex flex-col items-start px-3 xs:px-4 sm:px-5 py-3.5 md:py-4
                   flex-shrink-0 transition-all duration-200 border-b-2 border-transparent
                   ${active === i ? "text-ink" : "text-ink-faint hover:text-ink-dim"}`}
               >
@@ -85,16 +83,6 @@ export default function SectionTabs() {
                 </span>
               </button>
             ))}
-
-            {/* Quick contact */}
-            <button
-              onClick={() => openModal("quote")}
-              className="ml-auto hidden md:flex items-center gap-2 px-4 py-2 my-2 mr-1 rounded-full
-                bg-mint text-bg text-[13px] font-medium flex-shrink-0 cursor-none
-                hover:shadow-[0_0_20px_rgba(13,217,197,0.4)] transition-all duration-200"
-            >
-              {i18n.nav_cta}
-            </button>
           </div>
         </div>
       </div>

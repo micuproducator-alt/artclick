@@ -83,7 +83,7 @@ export default function ContactModal() {
             )}
             <button type="submit" disabled={loading}
               className="w-full py-3.5 rounded-full bg-mint text-bg font-bold text-[15px] mt-1
-                hover:shadow-[0_0_28px_rgba(13,217,197,0.4)] transition-all cursor-none disabled:opacity-50
+                hover:bg-[#3BE3D2] transition-all disabled:opacity-50
                 flex items-center justify-center gap-2">
               {loading ? (
                 <><svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none">

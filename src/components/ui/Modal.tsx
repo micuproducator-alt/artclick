@@ -51,7 +51,7 @@ export default function Modal({ isOpen, children, wide = false }: ModalProps) {
           className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center
             border border-white/15 bg-white/6 text-ink-faint text-[20px] leading-none
             hover:bg-white/12 hover:text-ink hover:rotate-90
-            transition-all duration-200 cursor-none z-10"
+            transition-all duration-200 z-10"
         >
           ×
         </button>

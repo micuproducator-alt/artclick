@@ -32,7 +32,7 @@ export default function WhyArtcllick() {
               key={i}
               className="group relative border border-[var(--glass-border)] rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8
                 bg-[var(--glass)] hover:border-mint/40 transition-all duration-300
-                hover:shadow-[0_0_40px_rgba(13,217,197,0.08)]"
+                hover:bg-[#3BE3D2]"
             >
               {/* Number watermark */}
               <div

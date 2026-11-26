@@ -1,49 +1,24 @@
-import { useRef, type ReactNode, type ButtonHTMLAttributes } from 'react'
+import type { ReactNode, ButtonHTMLAttributes } from 'react'
 
 interface MagneticBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
   variant?: 'primary' | 'ghost'
-  strength?: number
 }
 
+// Primary / secondary call-to-action button.
 export default function MagneticBtn({
   children,
   variant = 'primary',
-  strength = 0.35,
   className = '',
   ...props
 }: MagneticBtnProps) {
-  const ref = useRef<HTMLButtonElement>(null)
-
-  const onMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const btn = ref.current
-    if (!btn) return
-    const r = btn.getBoundingClientRect()
-    const x = (e.clientX - r.left - r.width / 2) * strength
-    const y = (e.clientY - r.top - r.height / 2) * strength
-    btn.style.transform = `translate(${x}px, ${y}px) scale(1.04)`
-  }
-
-  const onMouseLeave = () => {
-    const btn = ref.current
-    if (!btn) return
-    btn.style.transform = 'translate(0, 0) scale(1)'
-  }
-
-  const base = `inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium
-    cursor-none transition-[box-shadow,background] duration-200 whitespace-nowrap
-    [transition:transform_0.45s_cubic-bezier(0.16,1,0.3,1),box-shadow_0.2s,background_0.2s]`
-  const primary = `bg-mint border border-mint text-white hover:shadow-[0_0_32px_rgba(13,217,197,0.5)]`
-  const ghost = `bg-transparent border border-[var(--glass-border)] text-ink hover:border-[var(--glass-border-hi)] hover:text-mint`
+  const base = `inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-[14.5px] font-semibold
+    whitespace-nowrap transition-[background,border-color,color,transform] duration-200 active:scale-[0.98]`
+  const primary = `bg-mint border border-mint text-bg hover:bg-[#3BE3D2]`
+  const ghost = `bg-white/[0.03] border border-white/15 text-ink hover:border-white/30 hover:bg-white/[0.06]`
 
   return (
-    <button
-      ref={ref}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      className={`${base} ${variant === 'ghost' ? ghost : primary} ${className}`}
-      {...props}
-    >
+    <button className={`${base} ${variant === 'ghost' ? ghost : primary} ${className}`} {...props}>
       {children}
     </button>
   )

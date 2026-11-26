@@ -9,7 +9,7 @@ const EMPTY: Form = { lastName:'', firstName:'', email:'', phone:'', business:''
 function RadioCard({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) {
   return (
     <button type="button" onClick={onClick}
-      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200 cursor-none border-2
+      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200 border-2
         ${selected ? 'border-mint bg-mint/12 shadow-[0_0_0_1px_rgba(13,217,197,0.25)]' : 'border-white/15 bg-white/4 hover:border-white/30 hover:bg-white/7'}`}>
       <span className={`w-5 h-5 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all duration-200 ${selected ? 'border-mint bg-mint' : 'border-white/40'}`}>
         {selected && <span className="w-[7px] h-[7px] rounded-full bg-bg block" />}
@@ -22,7 +22,7 @@ function RadioCard({ label, selected, onClick }: { label: string; selected: bool
 function Pill({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) {
   return (
     <button type="button" onClick={onClick}
-      className={`px-4 py-2 rounded-full border-2 text-[13px] font-medium transition-all duration-200 cursor-none
+      className={`px-4 py-2 rounded-full border-2 text-[13px] font-medium transition-all duration-200
         ${selected ? 'border-mint bg-mint/20 text-mint shadow-[0_0_12px_rgba(13,217,197,0.2)]' : 'border-white/15 bg-white/4 text-ink-dim hover:border-white/30 hover:text-ink'}`}>
       {label}
     </button>
@@ -135,7 +135,7 @@ export default function QuoteModal() {
               </div>
               <button type="button" onClick={() => { if (step1Valid) setStep(2) }} disabled={!step1Valid}
                 className="w-full py-3.5 rounded-full bg-mint text-bg font-bold text-[15px] mt-2
-                  hover:shadow-[0_0_28px_rgba(13,217,197,0.45)] transition-all cursor-none disabled:opacity-25">
+                  hover:bg-[#3BE3D2] transition-all disabled:opacity-25">
                 Continue →
               </button>
             </div>
@@ -175,12 +175,12 @@ export default function QuoteModal() {
 
               <div className="flex gap-3 pt-1">
                 <button type="button" onClick={() => setStep(1)}
-                  className="px-5 py-3 rounded-full border-2 border-white/15 text-ink-dim text-[13.5px] hover:border-white/30 hover:text-ink transition-all cursor-none flex-shrink-0">
+                  className="px-5 py-3 rounded-full border-2 border-white/15 text-ink-dim text-[13.5px] hover:border-white/30 hover:text-ink transition-all flex-shrink-0">
                   ← Back
                 </button>
                 <button type="submit" disabled={!form.business.trim() || status === 'loading'}
                   className="flex-1 py-3 rounded-full bg-mint text-bg font-bold text-[15px]
-                    hover:shadow-[0_0_28px_rgba(13,217,197,0.45)] transition-all cursor-none disabled:opacity-25
+                    hover:bg-[#3BE3D2] transition-all disabled:opacity-25
                     flex items-center justify-center gap-2">
                   {status === 'loading' ? (
                     <><svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none">

@@ -131,7 +131,7 @@ export default function Footer() {
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
                   className="text-[11.5px] xs:text-[13px] text-ink-dim hover:text-mint transition-colors
-                    inline-flex items-center gap-1 xs:gap-1.5 cursor-none leading-tight"
+                    inline-flex items-center gap-1 xs:gap-1.5 leading-tight"
                 >
                   <span>{CONTACT_EMAIL}</span>
                   <ArrowIcon />
@@ -141,7 +141,7 @@ export default function Footer() {
                 <button
                   onClick={() => openModal("quote")}
                   className="text-[11.5px] xs:text-[13px] text-ink-dim hover:text-mint transition-colors
-                    inline-flex items-center gap-1 xs:gap-1.5 cursor-none
+                    inline-flex items-center gap-1 xs:gap-1.5
                     bg-transparent border-none font-inter text-left leading-tight"
                 >
                   {i18n.cta_btn.replace(" →", "")} <ArrowIcon />
@@ -166,7 +166,7 @@ export default function Footer() {
                   <button
                     onClick={link.action}
                     className="text-[11.5px] xs:text-[13px] text-ink-dim hover:text-ink transition-colors
-                      cursor-none bg-transparent border-none font-inter text-left leading-tight"
+ bg-transparent border-none font-inter text-left leading-tight"
                   >
                     {link.label}
                   </button>
@@ -191,7 +191,7 @@ export default function Footer() {
                   className="w-9 h-9 rounded-full border border-[var(--glass-border)]
                     flex items-center justify-center text-ink-dim flex-shrink-0
                     hover:border-mint hover:text-mint hover:bg-mint/8
-                    transition-all duration-200 cursor-none"
+                    transition-all duration-200"
                 >
                   {s.icon}
                 </a>
@@ -199,10 +199,10 @@ export default function Footer() {
             </div>
             <div className="mt-2">
               <div className="font-bricolage font-bold text-[32px] text-mint leading-none">
-                4+
+                {i18n.work_cards.length}
               </div>
               <div className="text-[12px] text-ink-faint mt-1">
-                projects delivered
+                live projects & templates
               </div>
             </div>
           </div>
@@ -219,14 +219,14 @@ export default function Footer() {
             {i18n.footer_copy} · {i18n.footer_legal} ·{" "}
             <a
               href="/terms-and-conditions.html"
-              className="hover:text-mint transition-colors cursor-none"
+              className="hover:text-mint transition-colors"
             >
               Terms
             </a>{" "}
             ·{" "}
             <a
               href="/privacy-policy.html"
-              className="hover:text-mint transition-colors cursor-none"
+              className="hover:text-mint transition-colors"
             >
               Privacy
             </a>
@@ -239,7 +239,7 @@ export default function Footer() {
             <button
               onClick={() => openModal("quote")}
               className="text-[11px] xs:text-[12px] text-ink-faint hover:text-mint font-mono
-                transition-colors cursor-none bg-transparent border-none hidden xs:block"
+                transition-colors bg-transparent border-none hidden xs:block"
             >
               {i18n.footer_available}
             </button>

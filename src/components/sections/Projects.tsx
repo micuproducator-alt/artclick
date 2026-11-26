@@ -1,150 +1,100 @@
 import { useLang } from '../../context/LangContext'
 import { useModal } from '../../context/ModalContext'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { useTilt } from '../../hooks/useTilt'
-import { useProjectCanvas } from '../../hooks/useProjectCanvas'
 import RevealText from '../ui/RevealText'
 import Tag from '../ui/Tag'
+import BrowserFrame from '../ui/BrowserFrame'
 import type { WorkCard } from '../../types'
-
-type PT = 'trading' | 'firma' | 'locallio' | 'pretcinstit'
 
 function ArrowIcon() {
   return (
-    <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-      <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   )
 }
 
-function ProjectCard({ card, type, index }: { card: WorkCard; type: PT; index: number }) {
-  const canvasRef = useProjectCanvas(type)
-  const { ref, onMouseMove, onMouseLeave } = useTilt<HTMLDivElement>()
-
-  const nums = ['01', '02', '03', '04']
-
-  const inner = (
-    <div
-      ref={ref}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      className="group/card wcard relative rounded-[20px] overflow-hidden h-full
-        border border-[var(--glass-border)] bg-bg-2
-        transition-[border-color,box-shadow] duration-500
-        hover:border-mint/30 hover:shadow-[0_24px_64px_rgba(13,217,197,0.1)]
-        [transform-style:preserve-3d] will-change-transform"
-      style={{ cursor: 'none', minHeight: 240 }}
-    >
-      {/* Canvas bg */}
-      <canvas ref={canvasRef}
-        className="absolute inset-0 w-full h-full opacity-45 group-hover/card:opacity-70 transition-opacity duration-500"
-        style={{ pointerEvents: 'none' }}
-      />
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-bg-2/30 to-bg-2/80
-        group-hover/card:to-bg-2/60 transition-all duration-500" />
-      {/* Mouse spotlight */}
-      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
-        style={{ background: 'radial-gradient(360px circle at var(--mx,50%) var(--my,50%), rgba(13,217,197,0.06), transparent 60%)' }}
-      />
-      {/* Watermark number */}
-      <div className="absolute bottom-0 right-3 font-bricolage font-black pointer-events-none select-none leading-none
-        text-white/[0.03] group-hover/card:text-mint/[0.07] transition-colors duration-500"
-        style={{ fontSize: 'clamp(52px, 9vw, 100px)' }}>
-        {nums[index]}
+function ProjectCard({ card, featured = false }: { card: WorkCard; featured?: boolean }) {
+  const body = (
+    <div className={featured ? 'flex flex-col justify-center' : ''}>
+      <div className="flex items-center gap-2 flex-wrap mb-3">
+        <span className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-ink-dim">{card.tag}</span>
+        {card.badge && (
+          <span className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-mint/10 text-mint border border-mint/25">
+            {card.badge}
+          </span>
+        )}
       </div>
-
-      {/* Content */}
-      <div className="relative z-10 flex flex-col h-full p-5 xs:p-6 sm:p-7" style={{ minHeight: 240 }}>
-        {/* Tag */}
-        <div className="font-mono text-[9.5px] xs:text-[10.5px] uppercase tracking-[0.12em]
-          text-mint/60 group-hover/card:text-mint mb-auto pb-5 flex items-center gap-2 transition-colors duration-300">
-          <span className="w-3 h-px bg-mint/40 group-hover/card:bg-mint group-hover/card:w-5 transition-all duration-400 inline-block" />
-          {card.tag}
+      <h3 className={`font-bricolage font-bold tracking-[-0.02em] leading-[1.15] text-ink mb-2
+        ${featured ? 'text-[24px] md:text-[30px]' : 'text-[19px] md:text-[21px]'}`}>
+        {card.h}
+      </h3>
+      <p className={`text-ink-dim leading-[1.65] mb-4 ${featured ? 'text-[14.5px] max-w-[440px]' : 'text-[13.5px]'}`}>
+        {card.p}
+      </p>
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <div className="flex gap-1.5 flex-wrap">
+          {card.pills?.map(pill => (
+            <span key={pill} className="text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.07] text-ink-dim">
+              {pill}
+            </span>
+          ))}
         </div>
-
-        <div>
-          <h3 className="font-bricolage font-bold tracking-[-0.025em] mb-2 leading-[1.1] text-ink"
-            style={{ fontSize: 'clamp(16px, 2.5vw, 26px)' }}>
-            {card.h}
-          </h3>
-          <p className="text-[12px] xs:text-[13px] text-ink-dim leading-[1.65] mb-4" style={{ maxWidth: 380 }}>
-            {card.p}
-          </p>
-
-          <div className="flex items-center justify-between flex-wrap gap-2">
-            {/* Pills */}
-            <div className="flex gap-1 flex-wrap">
-              {card.pills?.map(pill => (
-                <span key={pill}
-                  className="font-mono text-[9.5px] xs:text-[10.5px] px-2 py-0.5 rounded-full
-                    border border-white/10 text-ink-faint group-hover/card:border-mint/20 transition-colors duration-300">
-                  {pill}
-                </span>
-              ))}
-            </div>
-            {/* Arrow + link */}
-            <div className="flex items-center gap-2 flex-shrink-0">
-              {card.href && (
-                <span className="font-mono text-[10px] text-mint opacity-0 group-hover/card:opacity-100
-                  -translate-x-2 group-hover/card:translate-x-0 transition-all duration-300">
-                  {card.link}
-                </span>
-              )}
-              <div className={`w-8 h-8 xs:w-9 xs:h-9 rounded-full border flex items-center justify-center
-                transition-all duration-400 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]
-                ${card.href
-                  ? 'border-white/15 text-ink-dim group-hover/card:bg-mint group-hover/card:border-mint group-hover/card:text-bg -rotate-45 group-hover/card:rotate-0'
-                  : 'border-white/10 text-ink-faint/40'}`}>
-                <ArrowIcon />
-              </div>
-            </div>
-          </div>
-        </div>
+        {card.href && (
+          <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-mint group-hover:gap-2.5 transition-all">
+            {card.link} <ArrowIcon />
+          </span>
+        )}
       </div>
     </div>
   )
 
-  if (card.href) {
-    return (
-      <a href={card.href} target="_blank" rel="noopener noreferrer" className="block">
-        {inner}
-      </a>
-    )
-  }
-  return <div>{inner}</div>
+  const frame = card.image && (
+    <div className="overflow-hidden rounded-xl">
+      <BrowserFrame src={card.image} alt={`${card.h} — screenshot`} url={card.url}
+        className="transition-transform duration-500 ease-out group-hover:scale-[1.015]" />
+    </div>
+  )
+
+  const cls = `group block h-full rounded-2xl border border-white/[0.08] bg-bg-2/80 p-4 sm:p-5
+    hover:border-mint/30 transition-colors duration-300`
+
+  const inner = featured ? (
+    <div className="grid md:grid-cols-[1.25fr_1fr] gap-6 md:gap-10 items-center">
+      {frame}
+      <div className="px-1 md:px-0 md:pr-4">{body}</div>
+    </div>
+  ) : (
+    <div className="flex flex-col gap-5 h-full">
+      {frame}
+      <div className="px-1 pb-1">{body}</div>
+    </div>
+  )
+
+  return card.href ? (
+    <a href={card.href} target="_blank" rel="noopener noreferrer" className={cls} aria-label={`${card.h} — ${card.link}`}>
+      {inner}
+    </a>
+  ) : (
+    <div className={cls}>{inner}</div>
+  )
 }
 
-// "Your project" card
-function YourProjectCard() {
+function YourProjectBanner() {
   const { openModal } = useModal()
   return (
-    <div onClick={() => openModal('quote')}
-      className="group relative rounded-[20px] overflow-hidden
-        border-2 border-dashed border-mint/20
-        bg-mint/3 hover:border-mint/45 hover:bg-mint/6
-        transition-all duration-400 cursor-none
-        flex items-center justify-center p-6"
-      style={{ minHeight: 180 }}>
-      <div className="text-center">
-        <div className="w-11 h-11 rounded-full border border-mint/30 flex items-center justify-center
-          mx-auto mb-3 group-hover:border-mint/60 group-hover:bg-mint/10 transition-all duration-300">
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-            <path d="M10 4V16M4 10H16" stroke="#0DD9C5" strokeWidth="1.8" strokeLinecap="round"/>
-          </svg>
-        </div>
-        <h3 className="font-bricolage font-semibold text-[15px] text-ink mb-1">
-          Your project here
-        </h3>
-        <p className="text-[12px] text-ink-dim mb-3">
-          Let's build what's next for your business.
-        </p>
-        <span className="font-mono text-[11.5px] text-mint flex items-center justify-center gap-1.5
-          group-hover:gap-2.5 transition-all">
-          Start a project →
-        </span>
+    <button onClick={() => openModal('quote')}
+      className="group w-full text-left rounded-2xl border border-dashed border-mint/25 hover:border-mint/50
+        bg-mint/[0.03] hover:bg-mint/[0.06] transition-colors duration-300
+        px-6 py-6 sm:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <h3 className="font-bricolage font-semibold text-[18px] text-ink mb-1">Your project could be next</h3>
+        <p className="text-[13.5px] text-ink-dim">Tell us what you're building and get a fixed-price proposal within 24 hours.</p>
       </div>
-    </div>
+      <span className="inline-flex items-center gap-2 text-[14px] font-medium text-mint flex-shrink-0 group-hover:gap-3 transition-all">
+        Start a project <ArrowIcon />
+      </span>
+    </button>
   )
 }
 
@@ -152,41 +102,29 @@ export default function Projects() {
   const { i18n } = useLang()
   const headRef = useScrollReveal<HTMLDivElement>()
   const gridRef = useScrollReveal<HTMLDivElement>()
-
-  const types: PT[] = ['trading', 'firma', 'locallio', 'pretcinstit']
+  const [featured, ...rest] = i18n.work_cards
 
   return (
     <section id="work" className="section-pad scroll-mt-[80px]">
       <div className="wrap">
-
-        {/* Header */}
-        <div ref={headRef} className="reveal flex flex-col xs:flex-row xs:justify-between xs:items-end mb-10 md:mb-14 gap-3">
+        <div ref={headRef} className="reveal flex flex-col xs:flex-row xs:justify-between xs:items-end mb-10 md:mb-12 gap-3">
           <div>
             <Tag>{i18n.work_tag}</Tag>
             <RevealText text={i18n.work_h2} as="h2"
               className="font-bricolage font-bold text-[clamp(22px,4vw,40px)] leading-[1.1] tracking-[-0.03em]" />
           </div>
           <div className="font-mono text-[12px] text-ink-faint flex-shrink-0">
-            <span className="text-mint">04</span> {i18n.work_counter}
+            <span className="text-mint">{String(i18n.work_cards.length).padStart(2, '0')}</span> {i18n.work_counter}
           </div>
         </div>
 
-        {/* Grid — 4 proiecte + placeholder */}
-        <div ref={gridRef} className="reveal grid grid-cols-1 xs:grid-cols-2 gap-3 xs:gap-4">
-          {/* Proiect 1 - featured, full width pe xs+ */}
-          <div className="xs:col-span-2">
-            <ProjectCard card={i18n.work_cards[0]} type={types[0]} index={0} />
+        <div ref={gridRef} className="reveal flex flex-col gap-4 sm:gap-5">
+          <ProjectCard card={featured} featured />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            {rest.map(card => <ProjectCard key={card.h} card={card} />)}
           </div>
-          {/* Proiect 2 */}
-          <ProjectCard card={i18n.work_cards[1]} type={types[1]} index={1} />
-          {/* Proiect 3 */}
-          <ProjectCard card={i18n.work_cards[2]} type={types[2]} index={2} />
-          {/* Proiect 4 — Preț Cinstit */}
-          <ProjectCard card={i18n.work_cards[3]} type={types[3]} index={3} />
-          {/* Placeholder */}
-          <YourProjectCard />
+          <YourProjectBanner />
         </div>
-
       </div>
     </section>
   )

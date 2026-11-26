@@ -25,8 +25,8 @@ export default function CTA() {
           <div className="relative z-10 flex-1">
             {/* Urgency */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5
-              border border-red-400/25 bg-red-400/8 font-mono text-[11px] text-red-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse flex-shrink-0" />
+              border border-white/10 bg-white/[0.03] text-[12px] text-ink-dim">
+              <span className="w-1.5 h-1.5 rounded-full bg-mint flex-shrink-0" />
               {i18n.urgency}
             </div>
 

@@ -39,11 +39,8 @@ export default function Header() {
       >
         <div className="wrap flex items-center justify-between">
           {/* Logo */}
-          <a href="/" aria-label="Artcllick home" className="font-bricolage font-bold text-[19px] flex items-center gap-2 text-ink cursor-none">
-            <span
-              className="w-[7px] h-[7px] rounded-full bg-mint
-              shadow-[0_0_10px_rgba(13,217,197,0.6)]"
-            />
+          <a href="/" aria-label="Artcllick home" className="font-bricolage font-bold text-[19px] flex items-center gap-2 text-ink">
+            <span className="w-[7px] h-[7px] rounded-full bg-mint" />
             Artcllick
           </a>
 
@@ -53,7 +50,7 @@ export default function Header() {
               <button
                 key={item.label}
                 onClick={item.action}
-                className="text-sm text-ink-dim hover:text-mint transition-colors cursor-none
+                className="text-sm text-ink-dim hover:text-mint transition-colors
                   bg-transparent border-none font-inter font-medium"
               >
                 {item.label}
@@ -64,9 +61,8 @@ export default function Header() {
           <div className="hidden sm:flex items-center gap-3">
             <button
               onClick={() => openModal("contact")}
-              className="px-5 py-2.5 rounded-full bg-mint text-white text-[13.5px] font-medium
-                hover:bg-mint/90 transition-all cursor-none
-                shadow-[0_4px_20px_rgba(13,217,197,0.3)] hover:shadow-[0_6px_28px_rgba(13,217,197,0.45)]"
+              className="px-5 py-2.5 rounded-full bg-mint text-bg text-[13.5px] font-semibold
+                hover:bg-[#3BE3D2] transition-colors"
             >
               {i18n.nav_cta}
             </button>
@@ -76,7 +72,7 @@ export default function Header() {
           <div className="flex sm:hidden items-center gap-2">
             <button
               onClick={() => setMenuOpen((o) => !o)}
-              className="w-9 h-9 flex flex-col items-center justify-center gap-1.5 cursor-none
+              className="w-9 h-9 flex flex-col items-center justify-center gap-1.5
                 rounded-full border border-[var(--glass-border)] bg-[var(--glass)]"
             >
               <span
@@ -115,7 +111,7 @@ export default function Header() {
               key={item.label}
               onClick={item.action}
               className="text-left py-3 px-4 text-[15px] text-ink-dim hover:text-mint hover:bg-mint/5
-                rounded-xl transition-all cursor-none bg-transparent border-none font-inter"
+                rounded-xl transition-all bg-transparent border-none font-inter"
             >
               {item.label}
             </button>
@@ -126,8 +122,7 @@ export default function Header() {
             openModal("contact");
             setMenuOpen(false);
           }}
-          className="w-full py-3 rounded-full bg-mint text-bg font-medium text-[14px]
-            shadow-[0_4px_16px_rgba(13,217,197,0.3)] cursor-none"
+          className="w-full py-3 rounded-full bg-mint text-bg font-semibold text-[14px]"
         >
           {i18n.nav_cta}
         </button>

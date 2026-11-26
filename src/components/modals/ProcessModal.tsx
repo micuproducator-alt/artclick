@@ -36,7 +36,7 @@ export default function ProcessModal() {
       <button
         onClick={() => openModal('quote')}
         className="w-full py-3 rounded-full bg-mint border border-mint text-bg font-medium text-[14px]
-          hover:shadow-[0_0_28px_rgba(13,217,197,0.4)] transition-all cursor-none">
+          hover:bg-[#3BE3D2] transition-all">
         {i18n.proc_cta}
       </button>
     </Modal>

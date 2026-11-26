@@ -21,6 +21,9 @@ export interface ProjItem {
   p: string;
   link: string;
   href: string | null;
+  image?: string;
+  url?: string;
+  badge?: string;
 }
 
 export interface WhyCard {
@@ -48,6 +51,9 @@ export interface WorkCard {
   pills: string[];
   link: string | null;
   href?: string;
+  image?: string;
+  url?: string;
+  badge?: string;
 }
 
 export interface CmpRow {

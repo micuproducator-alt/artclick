@@ -19,12 +19,11 @@ export default function FloatingCTA() {
       <button
         onClick={() => openModal('quote')}
         className="flex items-center gap-2.5 px-4 py-3 md:px-5 md:py-3.5
-          bg-mint text-white rounded-full font-medium text-[13px] md:text-[14px]
-          shadow-[0_8px_32px_rgba(13,217,197,0.35)] hover:shadow-[0_8px_40px_rgba(13,217,197,0.55)]
-          hover:-translate-y-0.5 transition-all duration-200 cursor-none"
+          bg-mint text-bg rounded-full font-semibold text-[13px] md:text-[14px]
+          shadow-[0_10px_30px_-8px_rgba(0,0,0,0.6)] hover:bg-[#3BE3D2]
+          hover:-translate-y-0.5 transition-all duration-200"
       >
-        <span className="w-2 h-2 rounded-full bg-[var(--glass)] animate-pulse flex-shrink-0" />
-        <span className="hidden sm:inline">{i18n.cta_btn}</span>
+                <span className="hidden sm:inline">{i18n.cta_btn}</span>
         <span className="sm:hidden">Contact</span>
       </button>
     </div>
